@@ -13,7 +13,7 @@ export function NewTaskCategory({ onSubmit }) {
     }
 
     return (
-        <form onSubmit={handleSubmit} className="">
+        <form onSubmit={handleSubmit} name="category" className="">
             <div className="">
                 <label htmlFor="category">New Category</label>
                 <input 

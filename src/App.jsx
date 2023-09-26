@@ -5,7 +5,7 @@ import { CategoryList } from "./components/CategoryList"
 
 function App() {
   const [categories, setCategories] = useState(() => {
-    const localValue = localStorage.getItem("ITEMS")
+    const localValue = localStorage.getItem("CATEGORIES")
     if (localValue == null) return []
 
     return JSON.parse(localValue)
@@ -13,7 +13,7 @@ function App() {
   })
 
   useEffect(() => {
-    localStorage.setItem("ITEMS", JSON.stringify(categories))
+    localStorage.setItem("CATEGORIES", JSON.stringify(categories))
   }, [categories]) 
 
   function addCategory(title) {
@@ -33,7 +33,7 @@ function App() {
   function toggleCategory(id, priority) {
     setCategories(currentCategories => {
       return currentCategories.map(category => {
-        if(cateogory.id === id) {
+        if(category.id === id) {
           return {...category, priority}
         }
 
@@ -53,6 +53,8 @@ function App() {
     <div className="todoapp stack-large">
       <h1>ListEase</h1>
       <NewTaskCategory onSubmit={addCategory} />
+      <h2>Categories</h2>
+      <CategoryList categories={categories} toggleCategory={toggleCategory} deleteCategory={deleteCategory}/>
       
     </div>
     </>
