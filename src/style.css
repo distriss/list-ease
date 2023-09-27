@@ -110,6 +110,7 @@ body {
   appearance: none;
   pointer-events: none;
   position: absolute;
+  
 }
 
 .list li label::before {
@@ -122,6 +123,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-shrink: 0;
+  padding: 0.5rem;
 }
 
 .list li label:hover::before {

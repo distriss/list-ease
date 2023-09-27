@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export function NewTaskCategory({ onSubmit }) {
+export function NewCategory({ onSubmit }) {
     const [newCategory, setNewCategory] = useState("");
 
     function handleSubmit(e) {

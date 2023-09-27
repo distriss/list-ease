@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import './style.css'
-import { NewTaskCategory } from './components/NewTaskCategory'
+import { NewCategory } from './components/NewCategory'
 import { CategoryList } from "./components/CategoryList"
 
 function App() {
@@ -44,7 +44,7 @@ function App() {
 
   function deleteCategory(id) {
     setCategories(currentCategories => {
-      return currentCategories.filter(cateogory => category.id !== id)
+      return currentCategories.filter(category => category.id !== id)
     })
   }
 
@@ -52,10 +52,11 @@ function App() {
     <>
     <div className="todoapp stack-large">
       <h1>ListEase</h1>
-      <NewTaskCategory onSubmit={addCategory} />
+      <NewCategory onSubmit={addCategory} />
       <h2>Categories</h2>
-      <CategoryList categories={categories} toggleCategory={toggleCategory} deleteCategory={deleteCategory}/>
-      
+      <div>
+        <CategoryList categories={categories} toggleCategory={toggleCategory} deleteCategory={deleteCategory}/>  
+      </div>   
     </div>
     </>
   );
