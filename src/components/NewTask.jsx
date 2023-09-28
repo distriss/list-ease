@@ -2,7 +2,7 @@ import React, { useState } from "react"
 
 export function NewTask({ onSubmit, categoryId, categories, onMoveTask }) {
     const [newTask, setNewTask] = useState("")
-    const [selectedCategory, setSelectedCategory] = useState(categoryId);
+    const [selectedCategory, setSelectedCategory] = useState(categoryId || (categories.length > 0 ? categories[0].id : ""));
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -44,9 +44,9 @@ export function NewTask({ onSubmit, categoryId, categories, onMoveTask }) {
                     <option value={categoryId}>No Category</option>
                     {categories.map((category) => (
                     <option key={category.id} value={category.id}>
-              {category.title}
-            </option>
-          ))}
+                    {category.title}
+                    </option>
+                    ))}
                 </select>
 
             </div>

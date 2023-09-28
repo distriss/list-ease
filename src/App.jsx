@@ -7,19 +7,23 @@ import * as CategoriesAPI from './api/categories';
 import * as TasksAPI from './api/tasks';
 
 function App() {
-  const [categories, setCategories] = useState(() => {
-    const localValue = localStorage.getItem("CATEGORIES")
-    return localValue ? JSON.parse(localValue) : [];
-  });
-
-  const [tasks, setTasks] = useState(() => {
-    const localValue = localStorage.getItem("TASKS");
-    return localValue? JSON.parse(localValue) : [];
-  });
-
+  const [categories, setCategories] = useState([]);
+  const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
-    localStorage.setItem("CATEGORIES", JSON.stringify(categories))
+    const localCategories = localStorage.getItem('CATEGORIES');
+    if (localCategories) {
+      setCategories(JSON.parse(localCategories));
+    }
+
+    const localTasks = localStorage.getItem('TASKS');
+    if (localTasks) {
+      setTasks(JSON.parse(localTasks));
+    }
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem("CATEGORIES", JSON.stringify(categories));
   }, [categories]);
 
   useEffect(() => {
@@ -63,7 +67,9 @@ function App() {
     <div className="todoapp stack-large">
       <h1>ListEase</h1>
       <NewCategory onSubmit={addCategory} />
-      <NewTask onSubmit={addTask}
+      <NewTask 
+        onSubmit={addTask}
+        categoryId={null}
         categories={categories} 
         onMoveTask={moveTask} />      
       <h2>Categories</h2>
