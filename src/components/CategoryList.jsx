@@ -1,7 +1,6 @@
 import React from 'react';
 import { CategoryItem } from './CategoryItem';
 import * as TasksAPI from '../api/tasks';
-import { NewTask } from './NewTask';
 
 export function CategoryList({ categories, toggleCategory, deleteCategory}) {
     

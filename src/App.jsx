@@ -12,20 +12,27 @@ function App() {
 
   useEffect(() => {
     const localCategories = localStorage.getItem('CATEGORIES');
+    const localTasks = localStorage.getItem('TASKS');
+  
     if (localCategories) {
       setCategories(JSON.parse(localCategories));
+    } else {
+      // Only set an empty array if there is no localCategories data
+      setCategories([]);
     }
-
-    const localTasks = localStorage.getItem('TASKS');
+  
     if (localTasks) {
       setTasks(JSON.parse(localTasks));
+    } else {
+      // Only set an empty array if there is no localTasks data
+      setTasks([]);
     }
-  }, [])
-
+  }, []);
+  
   useEffect(() => {
     localStorage.setItem("CATEGORIES", JSON.stringify(categories));
   }, [categories]);
-
+  
   useEffect(() => {
     localStorage.setItem("TASKS", JSON.stringify(tasks));
   }, [tasks]);
@@ -69,7 +76,7 @@ function App() {
       <NewCategory onSubmit={addCategory} />
       <NewTask 
         onSubmit={addTask}
-        categoryId={null}
+        categoryId={""}
         categories={categories} 
         onMoveTask={moveTask} />      
       <h2>Categories</h2>
