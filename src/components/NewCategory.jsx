@@ -5,7 +5,23 @@ export function NewCategory({ onSubmit }) {
 
     function handleSubmit(e) {
         e.preventDefault()
-        if (newCategory === "" ) return
+        if (newCategory === "" ) return;
+
+        // get categories
+        const existingCategories = JSON.parse(localStorage.getItem("CATEGORIES"))
+
+        const newCategoryObject = {
+            id: crypto.randomUUID(),
+            title: newCategory,
+            createdAt: Date.now(),
+            priority: false,
+            completed: false,
+        };
+
+        // add new category to existing categories
+        existingCategories.push(newCategoryObject);
+
+        localStorage.setItem("CATEGORIES", JSON.stringify(existingCategories))
         
         onSubmit(newCategory)
 
