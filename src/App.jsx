@@ -1,51 +1,61 @@
-import { useEffect, useState } from 'react'
-import './style.css'
-import { NewCategory } from './components/NewCategory'
-import { CategoryList } from "./components/CategoryList"
+import React, { useEffect, useState } from 'react';
+import './style.css';
+import { NewCategory } from './components/NewCategory';
+import { CategoryList } from './components/CategoryList';
+import { NewTask } from './components/NewTask';
+import * as CategoriesAPI from './api/categories';
+import * as TasksAPI from './api/tasks';
 
 function App() {
   const [categories, setCategories] = useState(() => {
     const localValue = localStorage.getItem("CATEGORIES")
-    if (localValue == null) return []
+    return localValue ? JSON.parse(localValue) : [];
+  });
 
-    return JSON.parse(localValue)
+  const [tasks, setTasks] = useState(() => {
+    const localValue = localStorage.getItem("TASKS");
+    return localValue? JSON.parse(localValue) : [];
+  });
 
-  })
 
   useEffect(() => {
     localStorage.setItem("CATEGORIES", JSON.stringify(categories))
-  }, [categories]) 
+  }, [categories]);
 
+  useEffect(() => {
+    localStorage.setItem("TASKS", JSON.stringify(tasks));
+  }, [tasks]);
+
+  
+  // Category Functions 
   function addCategory(title) {
-    setCategories(currentCategories => {
-      return [
-        ...currentCategories, 
-        { id: crypto.randomUUID(), 
-          title,
-          tasks: [], 
-          createdAt: Date.now(),
-          priority: false
-        }
-      ]
-    })
+    CategoriesAPI.addCategory(setCategories, title);
   }
 
   function toggleCategory(id, priority) {
-    setCategories(currentCategories => {
-      return currentCategories.map(category => {
-        if(category.id === id) {
-          return {...category, priority}
-        }
-
-        return category
-      })
-    })
+    CategoriesAPI.toggleCategory(setCategories, categories, id, priority);
   }
 
   function deleteCategory(id) {
-    setCategories(currentCategories => {
-      return currentCategories.filter(category => category.id !== id)
-    })
+    CategoriesAPI.deleteCategory(setCategories, categories, id);
+  }
+
+
+  // Tasks functions
+  function addTask(title, categoryId) {
+    TasksAPI.addTask(setTasks, title, categoryId);
+  }
+
+  function toggleTask(id, completed, categoryId) {
+    TasksAPI.toggleTask(setTasks, tasks, id, completed, categoryId);
+  }
+
+  function moveTask(taskTitle, newCategoryId) {
+    TasksAPI.moveTask(setTasks, tasks, taskTitle, newCategoryId)
+  }
+
+  function deleteTask(id, categoryId) {
+    TasksAPI.deleteTask(setTasks, tasks, id, categoryId);
   }
 
   return (
@@ -53,9 +63,19 @@ function App() {
     <div className="todoapp stack-large">
       <h1>ListEase</h1>
       <NewCategory onSubmit={addCategory} />
+      <NewTask onSubmit={addTask}
+        categories={categories} 
+        onMoveTask={moveTask} />      
       <h2>Categories</h2>
       <div>
-        <CategoryList categories={categories} toggleCategory={toggleCategory} deleteCategory={deleteCategory}/>  
+        <CategoryList 
+          categories={categories} 
+          toggleCategory={toggleCategory} 
+          deleteCategory={deleteCategory}
+          addTask={addTask}
+          toggleTask={toggleTask}
+          deleteTask={deleteTask}
+          />  
       </div>   
     </div>
     </>

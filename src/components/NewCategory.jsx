@@ -13,8 +13,8 @@ export function NewCategory({ onSubmit }) {
     }
 
     return (
-        <form onSubmit={handleSubmit} name="category" className="">
-            <div className="">
+        <form onSubmit={handleSubmit} name="category" className="new-item-form">
+            <div className="form-row">
                 <label htmlFor="category">New Category</label>
                 <input 
                     value={newCategory}
