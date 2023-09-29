@@ -15,7 +15,7 @@
 
 
   // Toggle Category
-  export function toggleCategory(setCategories, id, priority) {
+  export function toggleCategory(setCategories, categories, id, priority) {
     setCategories(currentCategories => {
       return currentCategories.map(category => {
         if(category.id === id) {
@@ -29,7 +29,7 @@
 
 
   // Delete Category
-  export function deleteCategory(setCategories, id) {
+  export function deleteCategory(setCategories, categories, id) {
     setCategories(currentCategories => {
       return currentCategories.filter(category => category.id !== id)
     })

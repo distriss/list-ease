@@ -85,9 +85,6 @@ function App() {
           categories={categories} 
           toggleCategory={toggleCategory} 
           deleteCategory={deleteCategory}
-          addTask={addTask}
-          toggleTask={toggleTask}
-          deleteTask={deleteTask}
           />  
       </div>   
     </div>
