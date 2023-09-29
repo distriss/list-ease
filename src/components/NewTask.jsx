@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 
-export function NewTask({ onSubmit, categoryId, categories, onMoveTask }) {
+export function NewTask({ onSubmit, categoryId, categories }) {
     const [newTask, setNewTask] = useState("")
     const [selectedCategory, setSelectedCategory] = useState(categoryId || (categories.length > 0 ? categories[0].id : ""));
 
@@ -8,15 +8,9 @@ export function NewTask({ onSubmit, categoryId, categories, onMoveTask }) {
         e.preventDefault()
         if (newTask === "") return;
 
-        if (selectedCategory !== categoryId) {
-            onMoveTask(newTask, selectedCategory);
-        } else {
-            onSubmit(newTask, selectedCategory);
-        }
-
+        onSubmit(newTask, selectedCategory);
         setNewTask("")
     }
-
     
     // Category Selection
     function handleCategoryChange(e) {
@@ -35,13 +29,13 @@ export function NewTask({ onSubmit, categoryId, categories, onMoveTask }) {
                 />
             </div>
             <div className="form-row">
-                <label htmlFor="category">Category</label>
+                <label htmlFor="category">Select Category</label>
                 <select 
                     id="category"
                     value={selectedCategory}
                     onChange={handleCategoryChange}
                     >
-                    <option value={categoryId}>No Category</option>
+                    <option value="">No category</option>
                     {categories.map((category) => (
                     <option key={category.id} value={category.id}>
                     {category.title}

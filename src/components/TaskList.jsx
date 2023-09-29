@@ -1,16 +1,18 @@
 import { TaskItem } from "./TaskItem"
 
-export function TaskList({ categories, toggleTask, deleteTask}) {
+export function TaskList({ tasks, toggleTask, moveTask, deleteTask, toggleCompleted}) {
     return (
         <ul className="list">
-            {categories.length === 0 && "No Categories"}
-            {categories.map(Task => {
+            {tasks.length === 0 && "No Tasks"}
+            {tasks.map(task => {
                 return (
                     <TaskItem
-                        {...Task}
-                        key={Task.id}
+                        {...task}
+                        key={task.id}
                         toggleTask={toggleTask}
+                        moveTask={moveTask}
                         deleteTask={deleteTask}
+                        toggleCompleted={toggleCompleted}
                     />
                 )
             })}
