@@ -14,7 +14,7 @@ export function CategoryList({ categories, toggleCategory, deleteCategory, selec
                         key={category.id}
                         toggleCategory={toggleCategory}
                         deleteCategory={deleteCategory}
-                        onClick={() => selectCategory(category.id)}
+                        selectCategory={selectCategory}
                     />
                     </React.Fragment>
                     
