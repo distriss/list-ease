@@ -6,11 +6,15 @@ import { NewTask } from './components/NewTask';
 import { TaskList } from './components/TaskList';
 import * as CategoriesAPI from './api/categories';
 import * as TasksAPI from './api/tasks';
+import { MDBCard, MDBCardBody, MDBCardTitle, MDBBtn, MDBIcon } from 'mdb-react-ui-kit';
 
 function App() {
   const [categories, setCategories] = useState([]);
   const [tasks, setTasks] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
+
+  // Define state to control visibility of tasks card
+  const [showTasksCard, setShowTasksCard] = useState(false);
 
   useEffect(() => {
     const localCategories = localStorage.getItem('CATEGORIES');
@@ -47,6 +51,10 @@ function App() {
     CategoriesAPI.toggleCategory(setCategories, categories, id, priority);
   }
 
+  function selectCategory(setCategories, id, categories) {
+    CategoriesAPI.selectCategory(setCategories, categories, id)
+  }
+
   function deleteCategory(id) {
     CategoriesAPI.deleteCategory(setCategories, categories, id);
   }
@@ -73,8 +81,8 @@ function App() {
     TasksAPI.toggleCompleted(setTasks, tasks, id, completed)
   }
 
+
   return (
-    <>
     <div className="todoapp stack-large">
       <h1>ListEase</h1>
       <NewCategory onSubmit={addCategory} />
@@ -92,18 +100,34 @@ function App() {
           />  
       </div>
       <div>
-      <h3>Tasks</h3>
-        <TaskList
-          tasks={tasks}
-          toggleTask={toggleTask}
-          moveTask={moveTask}
-          deleteTask={deleteTask}
-          toggleCompleted={toggleCompleted}
-        />  
+        <h3>Tasks</h3>
+        {selectedCategory && (
+          // Show tasks card when a category is selected
+          <MDBCard>
+            <MDBCardBody>
+              <MDBCardTitle>Tasks for Category {selectedCategory}</MDBCardTitle>
+              <ul className="task-list">
+                {tasks.filter(task => task.categoryId === selectedCategory).map(task => (
+                  <li key={task.id} className="task-list-item">
+                    <span className={`task-title ${task.priority ? 'priority' : ''}`}>
+                      {task.title}
+                    </span>
+                    <MDBBtn color="primary" className="task-priority">
+                      <MDBIcon icon="star" />
+                    </MDBBtn>
+                    <MDBBtn color="primary" className="task-notes">
+                      <MDBIcon icon="pen" />
+                    </MDBBtn>
+                  </li>
+                ))}
+              </ul>
+            </MDBCardBody>
+          </MDBCard>
+        )}
       </div>  
     </div>
-    </>
   );
 }
+
 
 export default App

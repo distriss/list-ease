@@ -1,7 +1,7 @@
 import React from 'react';
 import { CategoryItem } from './CategoryItem';
 
-export function CategoryList({ categories, toggleCategory, deleteCategory}) {
+export function CategoryList({ categories, toggleCategory, deleteCategory, selectCategory}) {
  
     return (
         <ul className="list">
@@ -14,6 +14,7 @@ export function CategoryList({ categories, toggleCategory, deleteCategory}) {
                         key={category.id}
                         toggleCategory={toggleCategory}
                         deleteCategory={deleteCategory}
+                        onClick={() => selectCategory(category.id)}
                     />
                     </React.Fragment>
                     

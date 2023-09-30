@@ -8,6 +8,7 @@
           createdAt: Date.now(),
           priority: false,
           completed: false,
+          selected: false,
         }
       ]
     })
@@ -25,6 +26,15 @@
         return category
       })
     })
+  }
+
+  // Select Category
+  export function selectCategory(setCategories, categories, id) {
+    const selectedCategory = categories.find(category => category.id === id);
+    
+    if (selectedCategory) {
+      setCategories(prevCategories => prevCategories.map(category => category.id === id ? {...category, selected: true } : category))
+    }
   }
 
 
