@@ -47,6 +47,10 @@ function App() {
     CategoriesAPI.toggleCategory(setCategories, categories, id, priority);
   }
 
+  function selectCategory(setCategories, categories, id) {
+    CategoriesAPI.toggleCategory(setCategories, categories, id)
+  }
+
   function deleteCategory(id) {
     CategoriesAPI.deleteCategory(setCategories, categories, id);
   }

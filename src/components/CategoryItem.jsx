@@ -3,15 +3,13 @@ import { MDBListGroupItem, MDBIcon } from 'mdb-react-ui-kit';
 
 export default function CategoryItem({ priority, id, title, toggleCategory, selectCategory, deleteCategory }) {
   return (
-    <MDBListGroupItem
-      noBorders
-      className={`px-3 ${selectCategory ? 'active' : ''}`} // Apply 'active' class conditionally
+    <li
       onClick={() => selectCategory(id)}
     >
       <span className="list-item-title">{title}</span>
       <div className="list-item-buttons">
         <button
-          className={`button-togglepriority ${priority ? 'active' : ''}`} // Apply 'active' class conditionally
+          className={`button-togglepriority ${priority ? 'active' : ''}`} 
           onClick={() => toggleCategory(id, !priority)}
         >
           {priority ? (
@@ -33,6 +31,6 @@ export default function CategoryItem({ priority, id, title, toggleCategory, sele
           <MDBIcon icon="trash" />
         </button>
       </div>
-    </MDBListGroupItem>
+    </li>
   );
 }
