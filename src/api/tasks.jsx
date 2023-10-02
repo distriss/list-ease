@@ -1,11 +1,11 @@
 // Add Task
-  export function addTask(setTasks, title, categoryId) {
+  export function addTask(setTasks, title, taskId) {
       setTasks(currentTasks => {
         return [
           ...currentTasks,
           { id: crypto.randomUUID(),
             title: title,
-            categoryId: categoryId,
+            taskId: taskId,
             createdAt: Date.now(),
             priority: false,
             completed: false,
@@ -30,11 +30,11 @@
   }
 
 // Move Task
-  export function moveTask(setTasks, id, newCategoryId) {
+  export function moveTask(setTasks, id, newtaskId) {
     setTasks(currentTasks => {
         return currentTasks.map(task => {
             if (task.id === id) {
-                return {...task, categoryId: newCategoryId };
+                return {...task, taskId: newtaskId };
             }
             return task;
         });
@@ -52,3 +52,15 @@
     localStorage.removeItem(idStr);
   }
 
+  
+  // Toggle Priority
+  export function togglePriority(setTasks, tasks, id) {
+    const taskPriority = tasks.find((task) => task.id === id)
+    if (taskPriority) {
+      const updatedtask = { ...taskPriority, priority: !taskPriority}
+      const updatedtasks = tasks.map((task) =>
+      task.id === id ? updatedtask : task
+    );
+    setTasks(updatedtasks);
+    }
+  }

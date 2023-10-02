@@ -4,10 +4,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 
 
-export default function CategoryItem({ priority, id, title, toggleCategory, selectCategory, deleteCategory }) {
+export default function CategoryItem({ 
+  priority, 
+  id, 
+  title, 
+  toggleCategory,
+  deleteCategory }) {
   return (
     <li
-      onClick={() => selectCategory(id)}
     >
       <span className="list-item-title">{title}</span>
       <div className="list-item-buttons">

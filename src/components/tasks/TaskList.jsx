@@ -1,36 +1,44 @@
-import { TaskItem } from "./TaskItem"
-import { Tab } from 'react-bootstrap';
+import React from 'react';
+import TaskItem from './TaskItem';
+import { ListGroup } from 'react-bootstrap';
 
-export function TaskList({ tasks, togglePriority, moveTask, deleteTask, toggleCompleted}) {
-    const sortByPriorityAndCreationTime = (taskA, taskB) => {
-        if (taskA.priority && !taskB.priority) {
-            return -1;
-        }
-        if (!taskA.priority && taskB.priority) {
-            return 1;
-        }
+export default function TaskList({ 
+    filteredTasks,
+    togglePriority, 
+    moveTask, 
+    deleteTask, 
+    toggleCompleted}) {
+    // const sortByPriorityAndCreationTime = (taskA, taskB) => {
+    //     if (taskA.priority && !taskB.priority) {
+    //         return -1;
+    //     }
+    //     if (!taskA.priority && taskB.priority) {
+    //         return 1;
+    //     }
 
-        return taskA.createdAt - taskB.createdAt;
-    };
+    //     return taskA.createdAt - taskB.createdAt;
+    // };
 
-    const sortedTasks = [...tasks].sort(sortByPriorityAndCreationTime);
+    // const sortedTasks = [...tasks].sort(sortByPriorityAndCreationTime);
 
     return (
 
-        <Tab.Content>
-            {sortedTasks.map((task, index) => (
-                <Tab.Pane key={task.id} eventKey={`#link${index + 1}`}>
-                    {task.title}
-                    <TaskItem
-                      {...task}
-                      key={task.id}
-                      togglePriority={togglePriority}
-                      moveTask={moveTask}
-                      deleteTask={deleteTask}
-                      toggleCompleted={toggleCompleted}
-                    />
-                </Tab.Pane>
-          ))}
-        </Tab.Content>
+      <ListGroup>
+      {filteredTasks.length === 0 && "No Tasks"}
+      {filteredTasks.map((task) => (
+        <ListGroup.Item key={task.id}>
+          {task.title}
+          <TaskItem
+            {...task}
+            key={task.id}
+            togglePriority={togglePriority}
+            moveTask={moveTask}
+            deleteTask={deleteTask}
+            toggleCompleted={toggleCompleted}
+          />
+        </ListGroup.Item>
+      ))}
+    </ListGroup>
+       
       );
     };

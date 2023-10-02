@@ -2,7 +2,7 @@ import React from 'react';
 import CategoryItem from './CategoryItem';
 import ListGroup from 'react-bootstrap/ListGroup';
 
-export function CategoryList({ categories, toggleCategory, deleteCategory, selectedCategory }) {
+export function CategoryList({ categories, toggleCategory, deleteCategory, selectCategory }) {
   return (
 
     <ListGroup>
@@ -16,7 +16,7 @@ export function CategoryList({ categories, toggleCategory, deleteCategory, selec
           title={category.title}
           toggleCategory={toggleCategory}
           deleteCategory={deleteCategory}
-          selectCategory={selectedCategory === category.id}
+          selectCategory={selectCategory === category.id}
           
         />
       </ListGroup.Item>

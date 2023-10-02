@@ -1,4 +1,5 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import { Form, FloatingLabel, Col, Row, Button } from 'react-bootstrap';
 
 export function NewCategory({ onSubmit }) {
     const [newCategory, setNewCategory] = useState("");
@@ -29,18 +30,24 @@ export function NewCategory({ onSubmit }) {
     }
 
     return (
-        <form onSubmit={handleSubmit} name="category" className="new-item-form">
-            <div className="form-row">
-                <label htmlFor="category">New Category</label>
-                <input 
-                    value={newCategory}
-                    onChange={ e => setNewCategory(e.target.value)}
-                    type="text" 
-                    id="category"                
-                />
-            </div>
-            <button className="btn">Add</button>
-        </form>
+        <Form onSubmit={handleSubmit} name="category">
+            <Row>
+                <Col>
+                    <FloatingLabel htmlFor="category" label="New Category">
+                        <Form.Control
+                            type="text"
+                            placeholder="New Category"
+                            value={newCategory}
+                            onChange={(e) => setNewCategory(e.target.value)}
+                            id="category"
+                        />
+                    </FloatingLabel>
+                </Col>
+                <Col>
+                    <Button type="submit">Add</Button>
+                </Col>
+            </Row>           
+        </Form>
     )
 
 

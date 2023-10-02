@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { Form, FloatingLabel, Col, Row, Button } from 'react-bootstrap';
 
 export function NewTask({ onSubmit, categoryId, categories }) {
     const [newTask, setNewTask] = useState("")
@@ -18,33 +19,65 @@ export function NewTask({ onSubmit, categoryId, categories }) {
     }
 
     return (
-        <form onSubmit={handleSubmit} name="task" className="new-item-form">
-            <div className="form-row">
-                <label htmlFor="task">New Task</label>
-                <input 
-                    value={newTask}
-                    onChange={ e => setNewTask(e.target.value)}
-                    type="text" 
-                    id="task"                
-                />
-            </div>
-            <div className="form-row">
-                <label htmlFor="category">Select Category</label>
-                <select 
+        <Form onSubmit={handleSubmit} name="task">
+            <Row>
+                <Col>
+                    <FloatingLabel htmlFor="task" label="New Task">
+                        <Form.Control
+                            type="text"
+                            placeholder="New Task"
+                            value={newTask}
+                            onChange={(e) => setNewTask(e.target.value)}
+                            id="task"
+                        />
+                    </FloatingLabel>
+                    <Form.Select 
+                    size="lg"
                     id="category"
                     value={selectedCategory}
-                    onChange={handleCategoryChange}
+                     onChange={handleCategoryChange}
                     >
-                    <option value="">No category</option>
+                    <option value="">Choose Category</option>
                     {categories.map((category) => (
                     <option key={category.id} value={category.id}>
                     {category.title}
-                    </option>
+                     </option>
                     ))}
-                </select>
+                </Form.Select>
+                </Col>
+                <Col>
+                    <Button type="submit">Add</Button>
+                </Col>
+                
+            </Row>           
+        </Form>
+        // <form onSubmit={handleSubmit} name="task" className="new-item-form">
+        //     <div className="form-row">
+        //         <label htmlFor="task">New Task</label>
+        //         <input 
+        //             value={newTask}
+        //             onChange={ e => setNewTask(e.target.value)}
+        //             type="text" 
+        //             id="task"                
+        //         />
+        //     </div>
+        //     <div className="form-row">
+        //         <label htmlFor="category">Select Category</label>
+        //         <select 
+        //             id="category"
+        //             value={selectedCategory}
+        //             onChange={handleCategoryChange}
+        //             >
+        //             <option value="">No category</option>
+        //             {categories.map((category) => (
+        //             <option key={category.id} value={category.id}>
+        //             {category.title}
+        //             </option>
+        //             ))}
+        //         </select>
 
-            </div>
-            <button className="btn">Add</button>
-        </form>
+        //     </div>
+        //     <button className="btn">Add</button>
+        // </form>
     )
 }

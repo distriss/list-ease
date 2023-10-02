@@ -1,13 +1,32 @@
-export function TaskItem({ priority, id, title, toggleTask, deleteTask}) {
+import React from 'react';
+import { Form, Col, Button } from 'react-bootstrap';
+
+export default function TaskItem({ 
+    priority, 
+    id, 
+    title, 
+    toggleTask, 
+    deleteTask}) {
+    const handleToggle = () => {
+        toggleTask(id, !priority);
+    };
+
     return (
-        <li>
-            <label>
-                <input name="priority" type="checkbox"
-                    checked={priority}
-                    onChange={e => toggleTask(id, e.target.checked)} />
-                    {title}
-            </label>
-            <button onClick={() => deleteTask(id)} className="btn btn-danger">Delete</button>
-        </li>
-    )
-}
+        <Form.Row className="align-items-center">
+          <Col xs="auto">
+            <Form.Check
+              type="checkbox"
+              id={`taskCheckbox-${id}`}
+              label={title}
+              checked={priority}
+              onChange={handleToggle}
+            />
+          </Col>
+          <Col xs="auto">
+            <Button variant="danger" onClick={() => deleteTask(id)}>
+              Delete
+            </Button>
+          </Col>
+        </Form.Row>
+      );
+    }
