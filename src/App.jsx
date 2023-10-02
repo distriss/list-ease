@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './style.css';
-import { NewCategory } from './components/NewCategory';
-import { CategoryList } from './components/CategoryList';
-import { NewTask } from './components/NewTask';
-import { TaskList } from './components/TaskList';
+import { NewCategory } from './components/categories/NewCategory';
+import { CategoryList } from './components/categories/CategoryList';
+import { NewTask } from './components/tasks/NewTask';
+import { TaskList } from './components/tasks/TaskList';
 import * as CategoriesAPI from './api/categories';
 import * as TasksAPI from './api/tasks';
 

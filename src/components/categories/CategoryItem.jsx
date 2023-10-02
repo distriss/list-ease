@@ -1,5 +1,4 @@
 import React from 'react';
-import { MDBListGroupItem, MDBIcon } from 'mdb-react-ui-kit';
 
 export default function CategoryItem({ priority, id, title, toggleCategory, selectCategory, deleteCategory }) {
   return (
