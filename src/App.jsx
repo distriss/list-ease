@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './style.css';
+import { Container, Tab, Row, Col } from 'react-bootstrap';
+import Header from './components/view/Header';
+
 import { NewCategory } from './components/categories/NewCategory';
 import { CategoryList } from './components/categories/CategoryList';
 import { NewTask } from './components/tasks/NewTask';
@@ -80,6 +83,19 @@ function App() {
 
   return (
     <>
+    <Container className="w-75 p-3" fluid="md">
+      <Header />
+      <Tab.Container id="list-group-tabs-example" defaultActiveKey="#link1">
+        <Row>
+          <Col sm={4}>
+          </Col>
+          <Col sm={8}>
+            
+          </Col>
+        </Row>
+      </Tab.Container>
+    </Container>
+    
     <div className="todoapp stack-large">
       <h1>ListEase</h1>
       <NewCategory onSubmit={addCategory} />

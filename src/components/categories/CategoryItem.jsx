@@ -1,4 +1,8 @@
 import React from 'react';
+import Button from 'react-bootstrap/Button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faStar } from '@fortawesome/free-solid-svg-icons'
+
 
 export default function CategoryItem({ priority, id, title, toggleCategory, selectCategory, deleteCategory }) {
   return (
@@ -7,28 +11,27 @@ export default function CategoryItem({ priority, id, title, toggleCategory, sele
     >
       <span className="list-item-title">{title}</span>
       <div className="list-item-buttons">
-        <button
-          className={`button-togglepriority ${priority ? 'active' : ''}`} 
+        <Button
+          className={`button-togglepriority ${priority ? '' : 'active'}`} 
           onClick={() => toggleCategory(id, !priority)}
         >
           {priority ? (
             <>
-              <MDBIcon icon="star" />
-              Unmark Priority
+              <FontAwesomeIcon icon={faStar} color="yellow"/>
             </>
           ) : (
             <>
-              <MDBIcon icon="star-o" />
-              Mark Priority
+              <FontAwesomeIcon icon={faStar} color="gray" />
             </>
           )}
-        </button>
-        <button
+        </Button>
+        <Button
+          variant="danger"
           className="button-delete-item"
           onClick={() => deleteCategory(id)}
         >
-          <MDBIcon icon="trash" />
-        </button>
+          Delete
+        </Button>
       </div>
     </li>
   );

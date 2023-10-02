@@ -28,6 +28,19 @@
     })
   }
 
+  // Toggle Priority
+  export function togglePriority(setCategories, categories, id) {
+    const categoryPriority = categories.find((category) => category.id === id)
+    if (categoryPriority) {
+      const updatedCategory = { ...categoryPriority, priority: !categoryPriority}
+      const updatedCategories = categories.map((category) =>
+      category.id === id ? updatedCategory : category
+    );
+    setCategories(updatedCategories);
+    }
+  }
+  
+
   // Select Category
   export function selectCategory(setCategories, categories, id) {
     const selectedCategory = categories.find(category => category.id === id);

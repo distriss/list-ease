@@ -1,4 +1,5 @@
 import { TaskItem } from "./TaskItem"
+import { Tab } from 'react-bootstrap';
 
 export function TaskList({ tasks, togglePriority, moveTask, deleteTask, toggleCompleted}) {
     const sortByPriorityAndCreationTime = (taskA, taskB) => {
@@ -15,20 +16,21 @@ export function TaskList({ tasks, togglePriority, moveTask, deleteTask, toggleCo
     const sortedTasks = [...tasks].sort(sortByPriorityAndCreationTime);
 
     return (
-        <ul className="list">
-            {tasks.length === 0 && "No Tasks"}
-            {tasks.map(task => {
-                return (
+
+        <Tab.Content>
+            {sortedTasks.map((task, index) => (
+                <Tab.Pane key={task.id} eventKey={`#link${index + 1}`}>
+                    {task.title}
                     <TaskItem
-                        {...task}
-                        key={task.id}
-                        togglePriority={togglePriority}
-                        moveTask={moveTask}
-                        deleteTask={deleteTask}
-                        toggleCompleted={toggleCompleted}
+                      {...task}
+                      key={task.id}
+                      togglePriority={togglePriority}
+                      moveTask={moveTask}
+                      deleteTask={deleteTask}
+                      toggleCompleted={toggleCompleted}
                     />
-                )
-            })}
-        </ul>
-    )
-}
+                </Tab.Pane>
+          ))}
+        </Tab.Content>
+      );
+    };
