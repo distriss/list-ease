@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { Form, FloatingLabel, Col, Row, Button } from 'react-bootstrap';
+import { Form, FormGroup, InputGroup, Dropdown, FloatingLabel, Col, Row, Button, DropdownButton } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
 export function NewCategory({ onSubmit }) {
     const [newCategory, setNewCategory] = useState("");
@@ -31,22 +33,20 @@ export function NewCategory({ onSubmit }) {
 
     return (
         <Form onSubmit={handleSubmit} name="category">
-            <Row>
-                <Col>
-                    <FloatingLabel htmlFor="category" label="New Category">
-                        <Form.Control
-                            type="text"
-                            placeholder="New Category"
-                            value={newCategory}
-                            onChange={(e) => setNewCategory(e.target.value)}
-                            id="category"
-                        />
-                    </FloatingLabel>
-                </Col>
-                <Col>
-                    <Button size="lg" type="submit">Add</Button>
-                </Col>
-            </Row>           
+            <InputGroup className="mb-3">
+                <FloatingLabel htmlFor="category" label="New Category">
+                    <Form.Control
+                        type="text"
+                        placeholder="New Category"
+                        value={newCategory}
+                        onChange={(e) => setNewCategory(e.target.value)}
+                        id="category"
+                    />
+                </FloatingLabel>
+                <Button variant="primary" size="lg" type="submit">
+                    <FontAwesomeIcon icon={faPlus} color="white" />
+                </Button>
+            </InputGroup>           
         </Form>
     )
 

@@ -1,20 +1,18 @@
 import React from 'react';
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
+import { Container, Row, Nav, Navbar, Image} from 'react-bootstrap';
 
 const Header = () => {
     return (
-      <>
       <Navbar expand="lg" className="bg-body-tertiary" bg="dark" data-bs-theme="dark" >
-      <Container>
-          <Navbar.Brand href="#home">
-            <img
+      <Container >
+          <Navbar.Brand className="h1" href="#home">
+            
+            <Image
               alt="ListEase Logo"
               src="src\components\view\assets\img\listease-logo.webp"
-              width="50"
-              height="50"
-              className="d-inline-block align-top"
+              width="200"
+              height="200"
+              className="d-inline-block align-center"
             />{' '}
             ListEase
           </Navbar.Brand>
@@ -27,7 +25,6 @@ const Header = () => {
           </Navbar.Collapse>
       </Container>
     </Navbar>
-      </>
     )
 }
 

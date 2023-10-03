@@ -1,5 +1,7 @@
-import React, { useState } from "react"
-import { Form, FloatingLabel, Col, Row, Button } from 'react-bootstrap';
+import React, { useState } from "react";
+import { Form, FormGroup, InputGroup, Dropdown, FloatingLabel, Col, Row, Button, DropdownButton } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
 export function NewTask({ onSubmit, categoryId, categories }) {
     const [newTask, setNewTask] = useState("")
@@ -20,8 +22,26 @@ export function NewTask({ onSubmit, categoryId, categories }) {
 
     return (
         <Form onSubmit={handleSubmit} name="task">
-            <Row>
-                <Col>
+            <FormGroup>
+                <InputGroup className="mb-3">
+                    <DropdownButton
+                        variant="primary"
+                        id="category"
+                        value={selectedCategory}
+                        onChange={handleCategoryChange}
+                        title="Category"
+                        >
+                        <Dropdown.Item 
+                            value="">
+                            Default
+                        </Dropdown.Item>
+                        <Dropdown.Divider />
+                        {categories.map((category) => (
+                        <Dropdown.Item key={category.id} value={category.id}>
+                        {category.title}
+                        </Dropdown.Item>
+                        ))}
+                    </DropdownButton>
                     <FloatingLabel htmlFor="task" label="New Task">
                         <Form.Control
                             type="text"
@@ -31,25 +51,11 @@ export function NewTask({ onSubmit, categoryId, categories }) {
                             id="task"
                         />
                     </FloatingLabel>
-                    <Form.Select 
-                    size="sm"
-                    id="category"
-                    value={selectedCategory}
-                     onChange={handleCategoryChange}
-                    >
-                    <option value="">Choose Category</option>
-                    {categories.map((category) => (
-                    <option key={category.id} value={category.id}>
-                    {category.title}
-                     </option>
-                    ))}
-                    </Form.Select>
-                </Col>
-                <Col>
-                    <Button size="lg" type="submit">Add</Button>
-                </Col>
-                
-            </Row>           
+                    <Button variant="primary" size="lg" type="submit">
+                        <FontAwesomeIcon icon={faPlus} color="white" />
+                    </Button>
+                </InputGroup>
+            </FormGroup>         
         </Form>
         // <form onSubmit={handleSubmit} name="task" className="new-item-form">
         //     <div className="form-row">

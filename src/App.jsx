@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './style.css';
-import { Container, Tab, Row, Col, ListGroup } from 'react-bootstrap';
+import { Container, Stack, Tab, Row, Col, ListGroup } from 'react-bootstrap';
+import './style.css';
 import Header from './components/view/Header';
-
 import { NewCategory } from './components/categories/NewCategory';
 import { NewTask } from './components/tasks/NewTask';
 import * as CategoriesAPI from './api/categories';
@@ -100,20 +100,16 @@ const sortedTasks = [...tasks].sort(sortByPriorityAndCreationTime);
 
   return (
     <>
-    <Container className="w-75 p-3">
+    <Container className="w-75">
       <Header />
-      <Row> 
-          <Row sm={8}>         
+      <Stack className="col-lg-8 mt-3 mb-5 mx-auto">        
             <NewTask 
               onSubmit={addTask}
               categoryId={selectedCategory}
               categories={categories} 
             />
-          </Row> 
-          <Row> 
             <NewCategory onSubmit={addCategory} />
-            </Row>
-      </Row>
+      </Stack>
       <Tab.Container id="list-group-tabs-example" defaultActiveKey="#link1">
         <Row>
           <Col sm={4}>
