@@ -111,7 +111,7 @@ const sortedTasks = [...tasks].sort(sortByPriorityAndCreationTime);
       </Stack>
       <Tab.Container id="list-group-tabs-example" defaultActiveKey="#link1">
         <Row>
-          <Col sm={4}>
+          <Col sm={5}>
             <ListGroup>
             {categories.length === 0 && "No Categories"}
             {categories.map((category, index) => (
@@ -128,7 +128,7 @@ const sortedTasks = [...tasks].sort(sortByPriorityAndCreationTime);
                 ))}
             </ListGroup>
           </Col>
-          <Col sm={8}>
+          <Col sm={5}>
             <Tab.Content>
               {categories.map((category, index) => (
                 <Tab.Pane key={category.id} eventKey={`#link${index + 1}`}>
