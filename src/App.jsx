@@ -121,7 +121,6 @@ const sortedTasks = [...tasks].sort(sortByPriorityAndCreationTime);
             {categories.length === 0 && "No Categories"}
             {categories.map((category, index) => (
             <ListGroup.Item key={category.id} action href={`#link${index + 1}`}>
-            {category.title}
               <CategoryItem
                 key={category.id}
                 category={category}

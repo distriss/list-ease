@@ -1,7 +1,7 @@
 import React from 'react';
-import Button from 'react-bootstrap/Button';
+import { Container, Card, Col, Row, Stack, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar } from '@fortawesome/free-solid-svg-icons'
+import { faStar, faTrash } from '@fortawesome/free-solid-svg-icons'
 
 
 export default function CategoryItem({ 
@@ -11,32 +11,35 @@ export default function CategoryItem({
   toggleCategory,
   deleteCategory }) {
   return (
-    <li
-    >
-      <span className="list-item-title">{title}</span>
-      <div className="list-item-buttons">
-        <Button
-          className={`button-togglepriority ${priority ? '' : 'active'}`} 
-          onClick={() => toggleCategory(id, !priority)}
-        >
-          {priority ? (
+    <Card>
+      <Stack direction="horizontal" gap={3}>
+      <Card.Title className="p-2">{title}</Card.Title>
+      <Container className="d-flex">
+      <Button  
+          variant="primary"
+          className={`button-togglepriority ${priority ? '' : 'active'} p-2 ms-auto flex-shrink-0`}
+          onClick={() => toggleCategory(id, !priority)} >
+            {priority ? (
             <>
               <FontAwesomeIcon icon={faStar} color="yellow"/>
             </>
           ) : (
             <>
-              <FontAwesomeIcon icon={faStar} color="gray" />
+              <FontAwesomeIcon icon={faStar} color="white" />
             </>
           )}
         </Button>
+        </Container>
+        <Container className="d-flex">
         <Button
-          variant="danger"
-          className="button-delete-item"
-          onClick={() => deleteCategory(id)}
-        >
-          Delete
+            variant="danger"
+            className="button-delete-item p-2 flex-shrink-0"
+            onClick={() => deleteCategory(id)}
+          >
+            <FontAwesomeIcon icon={faTrash} color="white"/>
         </Button>
-      </div>
-    </li>
+        </Container>
+    </Stack>    
+    </Card>
   );
 }
