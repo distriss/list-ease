@@ -1,0 +1,27 @@
+
+:root {
+    --primary-color: #2b3035;
+    --primary-hover-color: #626870;
+    --primary-active-color: #1d2124;
+  }
+
+  .btn.btn-primary {
+    background-color: var(--primary-color);
+  }
+
+  .btn.btn-primary:active, .btn.btn-primary:active:focus, .btn.btn-primary:focus {
+    --primary-active-color: #1d2124;
+  }
+
+  .btn.btn-primary:hover, .btn.btn-primary:focus {
+    background-color: var(--primary-hover-color);
+  }
+
+  .dropdown-toggle::after {
+    display:none !important;
+}
+
+  .h1 {
+    font-size: 80px;
+
+  }

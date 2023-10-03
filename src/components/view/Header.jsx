@@ -5,8 +5,7 @@ const Header = () => {
     return (
       <Navbar expand="lg" className="bg-body-tertiary" bg="dark" data-bs-theme="dark" >
       <Container >
-          <Navbar.Brand className="h1" href="#home">
-            
+          <Navbar.Brand className="h1" href="#home">            
             <Image
               alt="ListEase Logo"
               src="src\components\view\assets\img\listease-logo.webp"

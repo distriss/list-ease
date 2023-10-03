@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './style.css';
 import { Container, Stack, Tab, Row, Col, ListGroup } from 'react-bootstrap';
-import './style.css';
 import Header from './components/view/Header';
 import { NewCategory } from './components/categories/NewCategory';
 import { NewTask } from './components/tasks/NewTask';
@@ -10,6 +8,7 @@ import * as CategoriesAPI from './api/categories';
 import * as TasksAPI from './api/tasks';
 import CategoryItem from './components/categories/CategoryItem';
 import TaskList from './components/tasks/TaskList';
+import './style.css';
 
 function App() {
   const [categories, setCategories] = useState([]);
