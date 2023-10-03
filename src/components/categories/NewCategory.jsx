@@ -44,7 +44,7 @@ export function NewCategory({ onSubmit }) {
                     </FloatingLabel>
                 </Col>
                 <Col>
-                    <Button type="submit">Add</Button>
+                    <Button size="lg"type="submit">Add</Button>
                 </Col>
             </Row>           
         </Form>

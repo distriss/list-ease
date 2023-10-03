@@ -32,7 +32,7 @@ export function NewTask({ onSubmit, categoryId, categories }) {
                         />
                     </FloatingLabel>
                     <Form.Select 
-                    size="lg"
+                    size="sm"
                     id="category"
                     value={selectedCategory}
                      onChange={handleCategoryChange}
@@ -43,10 +43,10 @@ export function NewTask({ onSubmit, categoryId, categories }) {
                     {category.title}
                      </option>
                     ))}
-                </Form.Select>
+                    </Form.Select>
                 </Col>
                 <Col>
-                    <Button type="submit">Add</Button>
+                    <Button size="lg" type="submit">Add</Button>
                 </Col>
                 
             </Row>           

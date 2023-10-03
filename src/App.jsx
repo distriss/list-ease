@@ -100,15 +100,19 @@ const sortedTasks = [...tasks].sort(sortByPriorityAndCreationTime);
 
   return (
     <>
-    <Container className="w-75 p-3" fluid="md">
+    <Container className="w-75 p-3">
       <Header />
-      <Row className="w-75 p-3" fluid="md">
-          <NewCategory onSubmit={addCategory} />
-          <NewTask 
-            onSubmit={addTask}
-            categoryId={selectedCategory}
-            categories={categories} 
-          />  
+      <Row> 
+          <Row sm={8}>         
+            <NewTask 
+              onSubmit={addTask}
+              categoryId={selectedCategory}
+              categories={categories} 
+            />
+          </Row> 
+          <Row> 
+            <NewCategory onSubmit={addCategory} />
+            </Row>
       </Row>
       <Tab.Container id="list-group-tabs-example" defaultActiveKey="#link1">
         <Row>
@@ -145,6 +149,8 @@ const sortedTasks = [...tasks].sort(sortByPriorityAndCreationTime);
                 </Tab.Pane>
               ))}
             </Tab.Content>
+            {/* Progress Bar
+            Remove Completed */}
           </Col>
         </Row>
     </Tab.Container>
