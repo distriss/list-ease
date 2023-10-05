@@ -20,9 +20,46 @@
   .dropdown-toggle::after {
     display:none !important;
 }
-.list-group-item:focus {
-  background-color: #2b3035;
-}
+  .list-group-item:focus {
+    background-color: #2b3035;
+  }
+
+
+  .icon {
+    width: 54px;
+    height: 54px;
+    line-height: 54px;
+    text-align: center;
+    color: #FFF;
+    color: rgba(255, 255, 255);
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .icon {
+    filter: drop-shadow(2px 2px 3px rgba(51, 51, 51, .35)) ;
+    transition:.2s; 
+  }
+  
+  .icon:hover {
+    filter: drop-shadow(3px 3px 5px rgba(51, 51, 51, .75)) ;
+  }
+
+  .icon-zoom.icon:hover, .icon:active { 
+    -webkit-transform: scale(1.1);
+   -moz-transform: scale(1.1);
+   -ms-transform: scale(1.1);
+   -o-transform: scale(1.1);
+   transform: scale(1.1); 
+ }
+  
+  .faStar {
+    color: rgb(255, 196, 0);
+    text-shadow: 6px 6px 10px rgba(51, 51, 51, 1);
+  }
 
   .h1 {
     font-size: 80px;

@@ -17,7 +17,7 @@ export default function CategoryItem({
     <Stack direction="horizontal" gap={3}>
       <div className="p-2"><h3 className="p-2">{title}</h3></div>
       <div className="p-2 ms-auto">
-        <FontAwesomeIcon icon={faStar} className="icon faStar"/>
+        <FontAwesomeIcon icon={faStar} className="icon icon-zoom faStar"/>
       </div>
       <DropdownButton
               as={ButtonGroup}
