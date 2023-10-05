@@ -1,5 +1,5 @@
-import React from 'react';
-import { Container, Card, Col, Row, Stack, ButtonGroup, Dropdown, DropdownButton, Button } from 'react-bootstrap';
+import { React, useRef } from 'react';
+import { Container, Card, Col, Row, Stack, ButtonGroup, Dropdown, DropdownButton } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faEllipsisV } from '@fortawesome/free-solid-svg-icons'
 
@@ -11,8 +11,6 @@ export default function CategoryItem({
   toggleCategory,
   deleteCategory }) {
 
-    const menuBtn = <FontAwesomeIcon icon={faEllipsisV} color="white"/>
-
   return (
     <Stack direction="horizontal" gap={3}>
       <div className="p-2"><h3 className="p-2">{title}</h3></div>
@@ -20,19 +18,19 @@ export default function CategoryItem({
         <FontAwesomeIcon icon={faStar} className="icon icon-zoom faStar"/>
       </div>
       <DropdownButton
-              as={ButtonGroup}
-              key="end"
-              id={`dropdown-button-drop-end`}
-              drop="end"
-              variant="primary"
-              title={menuBtn}
-            >
-              <Dropdown.Item eventKey="1">Action</Dropdown.Item>
-              <Dropdown.Item eventKey="2">Another action</Dropdown.Item>
-              <Dropdown.Item eventKey="3">Something else here</Dropdown.Item>
-              <Dropdown.Divider />
-              <Dropdown.Item eventKey="4">Separated link</Dropdown.Item>
-            </DropdownButton>
+          as={ButtonGroup}
+          key="end"
+          id={`dropdown-button-drop-end`}
+          focusFirstItemOnShow={false}
+          drop="end"
+          variant="primary"
+          title={<FontAwesomeIcon icon={faEllipsisV} className="icon icon-zoom"/>}
+          className="custom-menu-btn">         
+        <Dropdown.Item eventKey="1">Mark Priority</Dropdown.Item>
+        <Dropdown.Item eventKey="2">Unmark Priority</Dropdown.Item>
+        <Dropdown.Divider />
+        <Dropdown.Item eventKey="3">Delete</Dropdown.Item>
+      </DropdownButton>
     </Stack>
     // <Card>
     //   <Stack direction="horizontal" gap={3}>

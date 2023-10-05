@@ -111,7 +111,7 @@ const sortedTasks = [...tasks].sort(sortByPriorityAndCreationTime);
       </Stack>
       <Tab.Container id="list-group-tabs-example" defaultActiveKey="#link1">
         <Row>
-          <Col sm={5}>
+          <Col sm={4}>
             <ListGroup>
             {categories.length === 0 && "No Categories"}
             {categories.map((category, index) => (
