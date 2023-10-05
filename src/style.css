@@ -24,7 +24,6 @@
     background-color: #2b3035;
   }
 
-
   .icon {
     width: 50px;
     height: 50px;
@@ -58,13 +57,41 @@
   padding: 0 !important;
  }
   
-  .faStar {
-    color: rgb(255, 196, 0);
+  .fa-star {
+    color: #626870; 
     width: 40px;
     height: 40px;
     line-height: 40px;    
   }
 
+  .fa-star-priority {
+    color: rgb(255, 196, 0);
+  }
+
+  .jump-animation {
+    animation-name: jump;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: 1;
+    transform-origin: center;
+  }
+  
+  @keyframes jump {
+    0%, 100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    20%, 80% {
+      transform: translateY(-2px) rotate(5deg);
+    }
+    40%, 60% {
+      transform: translateY(-1px) rotate(-5deg);
+    }
+  }
+  
+  .fa-plus {
+    width: 25px;
+    height: 25px;
+  }
   
   .h1 {
     font-size: 80px;

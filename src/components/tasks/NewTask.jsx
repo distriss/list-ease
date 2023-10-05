@@ -52,7 +52,7 @@ export function NewTask({ onSubmit, categoryId, categories }) {
                         />
                     </FloatingLabel>
                     <Button variant="primary" size="lg" type="submit">
-                        <FontAwesomeIcon icon={faPlus} color="white" />
+                        <FontAwesomeIcon icon={faPlus} color="white" className="fa-plus"/>
                     </Button>
                 </InputGroup>
             </FormGroup>         

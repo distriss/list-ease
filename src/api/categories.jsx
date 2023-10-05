@@ -29,14 +29,14 @@
   }
 
   // Toggle Priority
-  export function togglePriority(setCategories, categories, id) {
+  export function toggleListPriority(setCategories, categories, id, priority) {
     const categoryPriority = categories.find((category) => category.id === id)
     if (categoryPriority) {
-      const updatedCategory = { ...categoryPriority, priority: !categoryPriority}
+      const updatedCategory = { ...categoryPriority, priority: !categoryPriority.priority }
       const updatedCategories = categories.map((category) =>
-      category.id === id ? updatedCategory : category
-    );
-    setCategories(updatedCategories);
+        category.id === id ? updatedCategory : category
+      );
+      setCategories(updatedCategories);
     }
   }
   

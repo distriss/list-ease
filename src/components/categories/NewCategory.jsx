@@ -44,7 +44,7 @@ export function NewCategory({ onSubmit }) {
                     />
                 </FloatingLabel>
                 <Button variant="primary" size="lg" type="submit">
-                    <FontAwesomeIcon icon={faPlus} color="white" />
+                    <FontAwesomeIcon icon={faPlus} color="white" className="fa-plus"/>
                 </Button>
             </InputGroup>           
         </Form>

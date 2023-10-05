@@ -50,6 +50,10 @@ function App() {
     CategoriesAPI.toggleCategory(setCategories, categories, id, priority);
   }
 
+   function toggleListPriority(id, priority, categoryId) {
+    CategoriesAPI.toggleListPriority(setCategories, categories, id, priority, categoryId)
+  }
+
   function selectCategory(setCategories, categories, id) {
     CategoriesAPI.toggleCategory(setCategories, categories, id)
   }
@@ -111,7 +115,7 @@ const sortedTasks = [...tasks].sort(sortByPriorityAndCreationTime);
       </Stack>
       <Tab.Container id="list-group-tabs-example" defaultActiveKey="#link1">
         <Row>
-          <Col sm={4}>
+          <Col sm={5}>
             <ListGroup>
             {categories.length === 0 && "No Categories"}
             {categories.map((category, index) => (
@@ -120,6 +124,7 @@ const sortedTasks = [...tasks].sort(sortByPriorityAndCreationTime);
                 key={category.id}
                 category={category}
                 title={category.title}
+                toggleListPriority={toggleListPriority}
                 toggleCategory={toggleCategory}
                 deleteCategory={deleteCategory}
                 selectCategory={selectedCategory === category.id}
