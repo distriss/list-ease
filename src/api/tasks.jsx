@@ -1,11 +1,11 @@
 // Add Task
-  export function addTask(setTasks, title, activeCategory) {
+  export function addTask(setTasks, title, categoryId) {
       setTasks(currentTasks => {
         return [
           ...currentTasks,
           { id: crypto.randomUUID(),
             title: title,
-            categoryId: activeCategory,
+            categoryId: categoryId,
             createdAt: Date.now(),
             priority: false,
             completed: false,
@@ -16,19 +16,18 @@
       })
     }
 
-
-// Toggle Task Completed
-  export function toggleTaskCompleted(setTasks, id, completed) {
-    setTasks(currentTasks => {
-        return currentTasks.map(task => {
-            if(task.id === id) {
-                return {...task, completed}
-            }
+// // Toggle Task Completed
+//   export function toggleTaskCompleted(setTasks, id, completed) {
+//     setTasks(currentTasks => {
+//         return currentTasks.map(task => {
+//             if(task.id === id) {
+//                 return {...task, completed}
+//             }
     
-            return task;
-        })
-    })
-  }
+//             return task;
+//         })
+//     })
+//   }
 
 // // Move Task
 //   export function moveTask(setTasks, id, newtaskId) {
