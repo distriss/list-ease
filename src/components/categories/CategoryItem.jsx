@@ -2,26 +2,27 @@ import { React, useState } from 'react';
 import { Stack } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, } from '@fortawesome/free-solid-svg-icons'
+import '../../style.css'
 
 
 export default function CategoryItem({ 
   priority, 
   title, 
   category,
-  toggleListPriority }) {
+  toggleCategoryPriority }) {
 
     const [starPriority, setStarPriority] = useState(
       priority ? 'fa-star-priority' : ''
     );
 
     const handleClick = () => {
-      toggleListPriority(category.id, !category.priority);
+      toggleCategoryPriority(category.id, !category.priority);
       setStarPriority(!category.priority ? 'fa-star-priority' : '');
     }
 
   return (
     <Stack direction="horizontal" gap={3}>
-      <div className="p-2"><h3 className="p-2">{title}</h3></div>
+      <div className="p-2"><h3 className="p-2 text-wrap text-break">{title}</h3></div>
       <div className={`p-2 ms-auto ${starPriority === 'fa-star-priority' ? 'jump-animation' : ''}`}>     
         <FontAwesomeIcon 
           icon={faStar} 

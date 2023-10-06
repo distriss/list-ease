@@ -3,10 +3,9 @@ import { Form, FormGroup, InputGroup, Dropdown, FloatingLabel, Col, Row, Button,
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
-export function NewTask({ onSubmit, categoryId, categories }) {
+export function NewTask({ onSubmit, activeCategory, categories }) {
     const [newTask, setNewTask] = useState("")
-    const [selectedCategory, setSelectedCategory] = useState(categoryId || (categories.length > 0 ? categories[0].id : ""));
-
+    
     function handleSubmit(e) {
         e.preventDefault()
         if (newTask === "") return;

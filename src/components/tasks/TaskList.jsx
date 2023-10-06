@@ -8,22 +8,9 @@ export default function TaskList({
     moveTask, 
     deleteTask, 
     toggleCompleted}) {
-    // const sortByPriorityAndCreationTime = (taskA, taskB) => {
-    //     if (taskA.priority && !taskB.priority) {
-    //         return -1;
-    //     }
-    //     if (!taskA.priority && taskB.priority) {
-    //         return 1;
-    //     }
-
-    //     return taskA.createdAt - taskB.createdAt;
-    // };
-
-    // const sortedTasks = [...tasks].sort(sortByPriorityAndCreationTime);
-
     return (
 
-      <ListGroup>
+    <ListGroup>
       {filteredTasks.length === 0 && "No Tasks"}
       {filteredTasks.map((task) => (
         <ListGroup.Item key={task.id}>

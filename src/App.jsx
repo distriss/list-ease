@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Stack, Tab, Row, Col, ListGroup } from 'react-bootstrap';
+import { Container, Stack, Tab, Row, Col, Dropdown, DropdownButton, ButtonGroup } from 'react-bootstrap';
 import Header from './components/view/Header';
 import { NewCategory } from './components/categories/NewCategory';
 import { NewTask } from './components/tasks/NewTask';
 import * as CategoriesAPI from './api/categories';
 import * as TasksAPI from './api/tasks';
-import CategoryItem from './components/categories/CategoryItem';
 import TaskList from './components/tasks/TaskList';
+import CategoryList from './components/categories/CategoryList';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEllipsisV } from '@fortawesome/free-solid-svg-icons'
 import './style.css';
 
 function App() {
   const [categories, setCategories] = useState([]);
   const [tasks, setTasks] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [activeCategory, setActiveCategory] = useState(null);
 
   useEffect(() => {
     const localCategories = localStorage.getItem('CATEGORIES');
@@ -46,16 +48,16 @@ function App() {
     CategoriesAPI.addCategory(setCategories, title);
   }
 
-  function toggleCategory(id, priority) {
-    CategoriesAPI.toggleCategory(setCategories, categories, id, priority);
-  }
+  // Active Category {
+    const handleTabSelect = (eventKey) => {
+      const categoryId = eventKey.substring(1);
+      setActiveCategory(categoryId);
+    };
 
-   function toggleListPriority(id, priority, categoryId) {
-    CategoriesAPI.toggleListPriority(setCategories, categories, id, priority, categoryId)
-  }
 
-  function selectCategory(setCategories, categories, id) {
-    CategoriesAPI.toggleCategory(setCategories, categories, id)
+
+   function toggleCategoryPriority(id, priority, categoryId) {
+    CategoriesAPI.toggleCategoryPriority(setCategories, categories, id, priority, categoryId)
   }
 
   function deleteCategory(id) {
@@ -68,25 +70,22 @@ function App() {
     TasksAPI.addTask(setTasks, title, categoryId);
   }
 
-  function toggleTask(id, priority, categoryId) {
-    TasksAPI.toggleTask(setTasks, tasks, id, priority, categoryId);
+  // Toggle Task Completed
+  function toggleTaskCompleted(id, completed, categoryId) {
+    TasksAPI.toggleTaskCompleted(setTasks, tasks, id, completed, categoryId);
   }
 
-  function togglePriority(id, priority, categoryId) {
-    TasksAPI.togglePriority(setTasks, tasks, id, priority, categoryId)
-  }
+  // function togglePriority(id, priority, categoryId) {
+  //   TasksAPI.togglePriority(setTasks, tasks, id, priority, categoryId)
+  // }
 
-  function moveTask(title, newCategoryId) {
-    TasksAPI.moveTask(setTasks, tasks, title, newCategoryId)
-  }
+  // function moveTask(title, newCategoryId) {
+  //   TasksAPI.moveTask(setTasks, tasks, title, newCategoryId)
+  // }
 
-  function deleteTask(id, categoryId) {
-    TasksAPI.deleteTask(setTasks, id, categoryId);
-  }
-
-  function toggleCompleted(id, completed) {
-    TasksAPI.toggleCompleted(setTasks, tasks, id, completed)
-  }
+  // function deleteTask(id, categoryId) {
+  //   TasksAPI.deleteTask(setTasks, id, categoryId);
+  // }
 
   const sortByPriorityAndCreationTime = (taskA, taskB) => {
     if (taskA.priority && !taskB.priority) {
@@ -108,7 +107,7 @@ const sortedTasks = [...tasks].sort(sortByPriorityAndCreationTime);
       <Stack className="col-lg-8 mt-3 mb-5 mx-auto">        
             <NewTask 
               onSubmit={addTask}
-              categoryId={selectedCategory}
+              categoryId={activeCategory}
               categories={categories} 
             />
             <NewCategory onSubmit={addCategory} />
@@ -116,34 +115,41 @@ const sortedTasks = [...tasks].sort(sortByPriorityAndCreationTime);
       <Tab.Container id="list-group-tabs-example" defaultActiveKey="#link1">
         <Row>
           <Col sm={5}>
-            <ListGroup>
-            {categories.length === 0 && "No Categories"}
-            {categories.map((category, index) => (
-            <ListGroup.Item key={category.id} action href={`#link${index + 1}`}>
-              <CategoryItem
-                key={category.id}
-                category={category}
-                title={category.title}
-                toggleListPriority={toggleListPriority}
-                toggleCategory={toggleCategory}
-                deleteCategory={deleteCategory}
-                selectCategory={selectedCategory === category.id}
-              />
-            </ListGroup.Item>
-                ))}
-            </ListGroup>
+            <CategoryList 
+            categories={categories} 
+            toggleCategoryPriority={toggleCategoryPriority} />
           </Col>
-          <Col sm={5}>
+          <Col sm={7}>
             <Tab.Content>
               {categories.map((category, index) => (
-                <Tab.Pane key={category.id} eventKey={`#link${index + 1}`}>
-                  <h3>{category.title}</h3>
+                <Tab.Pane 
+                  key={category.id} 
+                  eventKey={`#link${index + 1}`}
+                  className="px-0 mx-auto"
+                  >                  
+                  <div className="d-flex justify-content-between align-items-start mb-3">
+                    <h3 className="p-0 m-0">{category.title}</h3>
+                    <DropdownButton
+                      as={ButtonGroup}
+                      key="end"
+                      id={`dropdown-button-drop-end`}
+                      focusFirstItemOnShow={false}
+                      drop="end"
+                      variant="primary"
+                      title={<FontAwesomeIcon icon={faEllipsisV} className="icon icon-zoom"/>}
+                      className="custom-menu-btn">         
+                      <Dropdown.Item eventKey="1">Set Priority</Dropdown.Item>
+                      <Dropdown.Item eventKey="2">Clear Completed</Dropdown.Item>
+                      <Dropdown.Divider />
+                      <Dropdown.Item eventKey="3">Delete Category</Dropdown.Item>
+                    </DropdownButton>
+                  </div>
                   <TaskList
                     filteredTasks={sortedTasks.filter((task) => task.categoryId === category.id)}
-                    toggleTask={toggleTask}
-                    moveTask={moveTask}
-                    deleteTask={deleteTask}
-                    toggleCompleted={toggleCompleted}
+                    toggleTaskCompleted={toggleTaskCompleted}
+                    // moveTask={moveTask}
+                    // deleteTask={deleteTask}
+                    // toggleCompleted={toggleCompleted}
                   />
                 </Tab.Pane>
               ))}
@@ -176,7 +182,7 @@ const sortedTasks = [...tasks].sort(sortByPriorityAndCreationTime);
       <h3>Tasks</h3>
         <TaskList
           tasks={tasks}
-          toggleTask={toggleTask}
+          toggleTaskCompleted={toggleTaskCompleted}
           moveTask={moveTask}
           deleteTask={deleteTask}
           toggleCompleted={toggleCompleted}

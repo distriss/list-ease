@@ -8,7 +8,7 @@ export default function TaskItem({
     toggleTask, 
     deleteTask}) {
     const handleToggle = () => {
-        toggleTask(id, !priority);
+        toggleTask(id, !completed);
     };
 
     return (
@@ -18,7 +18,7 @@ export default function TaskItem({
               type="checkbox"
               id={`taskCheckbox-${id}`}
               label={title}
-              checked={priority}
+              checked={completed}
               onChange={handleToggle}
             />
           </Col>

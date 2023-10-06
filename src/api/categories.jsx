@@ -29,7 +29,7 @@
   }
 
   // Toggle Priority
-  export function toggleListPriority(setCategories, categories, id, priority) {
+  export function toggleCategoryPriority(setCategories, categories, id, priority) {
     const categoryPriority = categories.find((category) => category.id === id)
     if (categoryPriority) {
       const updatedCategory = { ...categoryPriority, priority: !categoryPriority.priority }
