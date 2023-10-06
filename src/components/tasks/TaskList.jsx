@@ -10,20 +10,18 @@ export default function TaskList({
     toggleCompleted}) {
     return (
 
-    <ListGroup>
-      {filteredTasks.length === 0 && "No Tasks"}
+      <ListGroup>
+      {filteredTasks.length === 0 && <ListGroup.Item>No Tasks</ListGroup.Item>}
       {filteredTasks.map((task) => (
-        <ListGroup.Item key={task.id}>
-          {task.title}
-          <TaskItem
-            {...task}
-            key={task.id}
-            togglePriority={togglePriority}
-            moveTask={moveTask}
-            deleteTask={deleteTask}
-            toggleCompleted={toggleCompleted}
-          />
-        </ListGroup.Item>
+        <TaskItem
+          task={task} 
+          key={task.id}
+          {...task}
+          togglePriority={togglePriority}
+          moveTask={moveTask}
+          deleteTask={deleteTask}
+          toggleCompleted={toggleCompleted}
+        />
       ))}
     </ListGroup>
        

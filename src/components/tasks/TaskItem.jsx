@@ -1,32 +1,42 @@
 import React from 'react';
-import { Form, Col, Button } from 'react-bootstrap';
+import { ListGroup } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 export default function TaskItem({ 
-    priority, 
-    id, 
-    title, 
-    toggleTask, 
-    deleteTask}) {
+  task,
+  toggleTaskCompleted, 
+  deleteTask}) {
+
+    const  {id, title, completed } = task;
+
     const handleToggle = () => {
-        toggleTask(id, !completed);
+      toggleTaskCompleted(id, !completed);
     };
 
     return (
-        <Form.Row className="align-items-center">
-          <Col xs="auto">
-            <Form.Check
-              type="checkbox"
-              id={`taskCheckbox-${id}`}
-              label={title}
-              checked={completed}
-              onChange={handleToggle}
+        <ListGroup.Item
+          as="li"
+          className="d-flex justify-content-between align-items-start"
+        >
+          <div className="ms-2 me-auto">
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                value=""
+                checked={completed}
+                onChange={() => toggleTaskCompleted(id, !completed)}
+              />
+              <label className="form-check-label">{title}</label>
+            </div>
+            <FontAwesomeIcon
+              icon={faTrash}
+              className='text-danger'
+              onClick={() => deleteTask(id)}
+              style={{cursor: "pointer" }}
             />
-          </Col>
-          <Col xs="auto">
-            <Button variant="danger" onClick={() => deleteTask(id)}>
-              Delete
-            </Button>
-          </Col>
-        </Form.Row>
+          </div>
+        </ListGroup.Item>
       );
     }
