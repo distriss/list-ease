@@ -1,41 +1,38 @@
-import React from 'react';
-import { ListGroup } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { ListGroup, Form } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 export default function TaskItem({ 
-  task,
-  toggleTaskCompleted, 
-  deleteTask}) {
+  task,}) {
 
-    const  {id, title, completed } = task;
-
-    const handleToggle = () => {
-      toggleTaskCompleted(id, !completed);
-    };
-
+    const  {id, title } = task;
+    
     return (
         <ListGroup.Item
           as="li"
-          className="d-flex justify-content-between align-items-start"
+          className=""
         >
-          <div className="ms-2 me-auto">
-            <div className="form-check">
-              <input
-                className="form-check-input"
-                type="checkbox"
-                value=""
-                checked={completed}
-                onChange={() => toggleTaskCompleted(id, !completed)}
+          <div className="d-flex p-2 align-items-start">
+            <div className="form-check me-2">
+            <Form.Check 
+              className="me-2" 
+              aria-label={title} 
+              type="checkbox"
+              value=""
+              checked={completed}
               />
-              <label className="form-check-label">{title}</label>
             </div>
-            <FontAwesomeIcon
-              icon={faTrash}
-              className='text-danger'
-              onClick={() => deleteTask(id)}
-              style={{cursor: "pointer" }}
-            />
+            <h5>{title}</h5>
+            <div className="ms-auto">
+              <FontAwesomeIcon
+                icon={faTrash}
+                className='icon fa-trash text-danger'
+                onClick={() => deleteTask(id)}
+                style={{cursor: "pointer" }}
+              />
+            </div>
+            <p>{notes}</p>
           </div>
         </ListGroup.Item>
       );

@@ -46,44 +46,18 @@ function App() {
   function addCategory(title) {
     CategoriesAPI.addCategory(setCategories, title);
   }
-
-  // Active Category {
-    const handleTabSelect = (eventKey) => {
-      const categoryId = parseInt(eventKey.substring(1), 10);
-      setActiveCategory(categoryId);
-    };
-    
-
+ 
    function toggleCategoryPriority(id, priority, categoryId) {
     CategoriesAPI.toggleCategoryPriority(setCategories, categories, id, priority, categoryId)
   }
 
-  function deleteCategory(id) {
-    CategoriesAPI.deleteCategory(setCategories, categories, id);
-  }
-
-
+  
   // Tasks functions
   function addTask(title, categoryId) {
     TasksAPI.addTask(setTasks, title, categoryId);
   }
 
-  // Toggle Task Completed
-  function toggleTaskCompleted(id, completed, categoryId) {
-    TasksAPI.toggleTaskCompleted(setTasks, tasks, id, completed, categoryId);
-  }
-
-  function togglePriority(id, priority, categoryId) {
-    TasksAPI.togglePriority(setTasks, tasks, id, priority, categoryId)
-  }
-
-  function moveTask(title, newCategoryId) {
-    TasksAPI.moveTask(setTasks, tasks, title, newCategoryId)
-  }
-
-  function deleteTask(id, categoryId) {
-    TasksAPI.deleteTask(setTasks, id, categoryId);
-  }
+ 
 
   const sortByPriorityAndCreationTime = (taskA, taskB) => {
     if (taskA.priority && !taskB.priority) {
@@ -144,16 +118,11 @@ const sortedTasks = [...tasks].sort(sortByPriorityAndCreationTime);
                   </div>
                   <TaskList
                     filteredTasks={sortedTasks.filter((task) => task.categoryId === category.id)}
-                    // toggleTaskCompleted={toggleTaskCompleted}
-                    // moveTask={moveTask}
-                    // deleteTask={deleteTask}
-                    // toggleCompleted={toggleCompleted}
+                    tasks={tasks}
                   />
                 </Tab.Pane>
               ))}
             </Tab.Content>
-            {/* Progress Bar
-            Remove Completed */}
           </Col>
         </Row>
     </Tab.Container>

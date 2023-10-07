@@ -68,6 +68,11 @@
     color: rgb(255, 196, 0);
   }
 
+  .fa-trash {
+    width: 20px;
+    height: 20px;
+  }
+
   .jump-animation {
     animation-name: jump;
     animation-duration: 0.3s;
