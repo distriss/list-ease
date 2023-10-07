@@ -7,7 +7,7 @@ export default function TaskList({
     togglePriority, 
     moveTask, 
     deleteTask, 
-    toggleCompleted}) {
+    toggleTaskCompleted}) {
     return (
 
       <ListGroup>
@@ -20,7 +20,7 @@ export default function TaskList({
           togglePriority={togglePriority}
           moveTask={moveTask}
           deleteTask={deleteTask}
-          toggleCompleted={toggleCompleted}
+          toggleTaskCompleted={toggleTaskCompleted}
         />
       ))}
     </ListGroup>

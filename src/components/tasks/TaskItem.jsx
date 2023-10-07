@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
 import { ListGroup, Form } from 'react-bootstrap';
+import * as TasksAPI from '../../api/tasks';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 export default function TaskItem({ 
-  task,}) {
+  task, toggleTaskCompleted}) {
+    const [tasks, setTasks] = useState([]);
 
-    const  {id, title } = task;
+    const  {id, title, notes, completed, categoryId } = task;
+
+    const handleCheckboxChange = () => {
+      toggleTaskCompleted(id, categoryId);
+    };
     
     return (
         <ListGroup.Item
@@ -21,6 +27,7 @@ export default function TaskItem({
               type="checkbox"
               value=""
               checked={completed}
+              onChange={handleCheckboxChange}
               />
             </div>
             <h5>{title}</h5>

@@ -16,3 +16,18 @@
       })
     }
 
+
+// Toggle Completed
+export function toggleTaskCompleted(setTasks, id, categoryId) {
+  setTasks((currentTasks) => {
+    return currentTasks.map((task) => {
+      if (task.id === id && task.categoryId === categoryId) {
+        return {
+          ...task, 
+          completed: !task.completed,
+        };
+      }
+      return task;
+    })
+  })
+}

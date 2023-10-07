@@ -57,6 +57,10 @@ function App() {
     TasksAPI.addTask(setTasks, title, categoryId);
   }
 
+  // Toggle Task Completed
+  function toggleTaskCompleted(id, categoryId) {
+    TasksAPI.toggleTaskCompleted(setTasks, id, categoryId)
+  }
  
 
   const sortByPriorityAndCreationTime = (taskA, taskB) => {
@@ -79,7 +83,7 @@ const sortedTasks = [...tasks].sort(sortByPriorityAndCreationTime);
       <Stack className="col-lg-8 mt-3 mb-5 mx-auto">        
       <NewTask 
         onSubmit={addTask}
-        categories={categories} 
+        categories={categories}
        />
             <NewCategory onSubmit={addCategory} />
       </Stack>
@@ -119,6 +123,7 @@ const sortedTasks = [...tasks].sort(sortByPriorityAndCreationTime);
                   <TaskList
                     filteredTasks={sortedTasks.filter((task) => task.categoryId === category.id)}
                     tasks={tasks}
+                    toggleTaskCompleted={toggleTaskCompleted}
                   />
                 </Tab.Pane>
               ))}
