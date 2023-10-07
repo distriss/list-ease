@@ -9,8 +9,7 @@
             createdAt: Date.now(),
             priority: false,
             completed: false,
-            notes: "",
-          
+            notes: "",          
           }
         ]
       })

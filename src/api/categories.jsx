@@ -8,12 +8,10 @@
           createdAt: Date.now(),
           priority: false,
           completed: false,
-          selected: false,
         }
       ]
     })
   }
-
 
   // Toggle Category
   export function toggleCategory(setCategories, categories, id, priority) {

@@ -6,7 +6,6 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 export default function TaskItem({ 
   task, toggleTaskCompleted}) {
-    const [tasks, setTasks] = useState([]);
 
     const  {id, title, notes, completed, categoryId } = task;
 

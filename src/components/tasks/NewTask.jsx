@@ -7,7 +7,7 @@ export function NewTask({ onSubmit, categories }) {
     const [newTask, setNewTask] = useState("");
     const [selectedCategory, setSelectedCategory] = useState(null);
 
-    const handleCategoryChange = (eventKey, event) => {
+    const handleCategoryChange = (eventKey) => {
         setSelectedCategory(eventKey);
     };
 
@@ -16,6 +16,23 @@ export function NewTask({ onSubmit, categories }) {
         if (newTask.trim() === "" || selectedCategory === null) {
             return;
         }
+
+        const newTaskObject = {
+            id: crypto.randomUUID(),
+            title: newTask,
+            categoryId: selectedCategory,
+            createdAt: Date.now(),
+            priority: false,
+            completed: false,
+            notes: "",
+        }
+
+         // get tasks
+         const existingTasks = JSON.parse(localStorage.getItem("TASKS")) || [];
+
+        existingTasks.push(newTaskObject)
+        
+        localStorage.setItem("TASKS", JSON.stringify(existingTasks))
 
         onSubmit(newTask, selectedCategory);
         setNewTask("");
