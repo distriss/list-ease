@@ -7,15 +7,23 @@ export function NewTask({ onSubmit, categories }) {
     const [newTask, setNewTask] = useState("");
     const [selectedCategory, setSelectedCategory] = useState(null);
 
+
+    console.log("NewTask component mounted");
+
     const handleCategoryChange = (eventKey) => {
         setSelectedCategory(eventKey);
     };
+    
 
     const handleSubmit = (e) => {
         e.preventDefault();
         if (newTask.trim() === "" || selectedCategory === null) {
             return;
         }
+
+        // get tasks
+        const existingTasks = JSON.parse(localStorage.getItem("TASKS"));
+        
 
         const newTaskObject = {
             id: crypto.randomUUID(),
@@ -25,12 +33,9 @@ export function NewTask({ onSubmit, categories }) {
             priority: false,
             completed: false,
             notes: "",
-        }
+        }        
 
-         // get tasks
-         const existingTasks = JSON.parse(localStorage.getItem("TASKS")) || [];
-
-        existingTasks.push(newTaskObject)
+        existingTasks.push(newTaskObject);
         
         localStorage.setItem("TASKS", JSON.stringify(existingTasks))
 

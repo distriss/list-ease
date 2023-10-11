@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { ListGroup, Form } from 'react-bootstrap';
-import * as TasksAPI from '../../api/tasks';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 

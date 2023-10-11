@@ -18,20 +18,23 @@ function App() {
  
   useEffect(() => {
     const localCategories = localStorage.getItem('CATEGORIES');
-    const localTasks = localStorage.getItem('TASKS');
-  
     if (localCategories) {
       setCategories(JSON.parse(localCategories));
     } else {
       setCategories([]);
     }
+  }, []);
   
+  useEffect(() => {
+    const localTasks = localStorage.getItem('TASKS');
     if (localTasks) {
       setTasks(JSON.parse(localTasks));
     } else {
       setTasks([]);
     }
   }, []);
+  
+
   
   useEffect(() => {
     localStorage.setItem("CATEGORIES", JSON.stringify(categories));
@@ -62,18 +65,6 @@ function App() {
     TasksAPI.toggleTaskCompleted(setTasks, id, categoryId)
   }
  
-
-  const sortByPriorityAndCreationTime = (taskA, taskB) => {
-    if (taskA.priority && !taskB.priority) {
-        return -1;
-    }
-    if (!taskA.priority && taskB.priority) {
-        return 1;
-    }
-     return taskA.createdAt - taskB.createdAt;
-};
-
-const sortedTasks = [...tasks].sort(sortByPriorityAndCreationTime);
 
 
   return (
@@ -121,7 +112,6 @@ const sortedTasks = [...tasks].sort(sortByPriorityAndCreationTime);
                     </DropdownButton>
                   </div>
                   <TaskList
-                    filteredTasks={sortedTasks.filter((task) => task.categoryId === category.id)}
                     tasks={tasks}
                     toggleTaskCompleted={toggleTaskCompleted}
                   />
