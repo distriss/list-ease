@@ -37,8 +37,8 @@ export function NewTask({ onSubmit, categories }) {
         
         localStorage.setItem("TASKS", JSON.stringify(existingTasks))
 
-        onSubmit(newTask, selectedCategory);
-        setNewTask("");
+        onSubmit(newTask, selectedCategory)
+        setNewTask("")
     };
 
     return (
@@ -47,7 +47,7 @@ export function NewTask({ onSubmit, categories }) {
                 <InputGroup className="mb-3">
                     <Dropdown onSelect={handleCategoryChange}>
                         <Dropdown.Toggle variant="primary" id="category">
-                            {selectedCategory === null ? "Category" : categories.find(category => category.id === selectedCategory).title}
+                            {selectedCategory === null ? "Select Category" : categories.find(category => category.id === selectedCategory).title}
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
                             <Dropdown.Item eventKey="">Default</Dropdown.Item>
