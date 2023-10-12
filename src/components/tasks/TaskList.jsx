@@ -14,8 +14,6 @@ export default function TaskList({
     const filteredTasks = tasks.filter(task => task.categoryId === category.id);
 
     const sortedTasks = sortTaskList(filteredTasks);
-    console.log(filteredTasks)
-      console.log(sortedTasks)
 
     return (
 

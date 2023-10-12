@@ -8,8 +8,6 @@ export function NewTask({ onSubmit, categories }) {
     const [selectedCategory, setSelectedCategory] = useState(null);
 
 
-    console.log("NewTask component mounted");
-
     const handleCategoryChange = (eventKey) => {
         setSelectedCategory(eventKey);
     };

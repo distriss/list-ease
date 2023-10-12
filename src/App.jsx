@@ -20,22 +20,16 @@ function App() {
     const localCategories = localStorage.getItem('CATEGORIES');
     if (localCategories) {
       setCategories(JSON.parse(localCategories));
-    } else {
-      setCategories([]);
-    }
+    } 
   }, []);
   
   useEffect(() => {
     const localTasks = localStorage.getItem('TASKS');
     if (localTasks) {
       setTasks(JSON.parse(localTasks));
-    } else {
-      setTasks([]);
-    }
+    } 
   }, []);
-  
-
-  
+    
   useEffect(() => {
     localStorage.setItem("CATEGORIES", JSON.stringify(categories));
   }, [categories]);
@@ -55,15 +49,12 @@ function App() {
     CategoriesAPI.toggleCategoryPriority(setCategories, categories, id, priority, categoryId)
   }
 
-
   
   // Tasks functions
   // Add Task
   function addTask(title, categoryId) {
     TasksAPI.addTask(setTasks, title, categoryId);
   }
-
-  // Sort Tasks
 
   // Toggle Task Completed
   function toggleTaskCompleted(id, categoryId) {
