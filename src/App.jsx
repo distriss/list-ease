@@ -45,20 +45,25 @@ function App() {
   }, [tasks]);
 
   
-  // Category Functions 
+  // Category Functions  
+  // Add Category
   function addCategory(title) {
     CategoriesAPI.addCategory(setCategories, title);
   }
  
-   function toggleCategoryPriority(id, priority, categoryId) {
+  function toggleCategoryPriority(id, priority, categoryId) {
     CategoriesAPI.toggleCategoryPriority(setCategories, categories, id, priority, categoryId)
   }
 
+
   
   // Tasks functions
+  // Add Task
   function addTask(title, categoryId) {
     TasksAPI.addTask(setTasks, title, categoryId);
   }
+
+  // Sort Tasks
 
   // Toggle Task Completed
   function toggleTaskCompleted(id, categoryId) {
@@ -113,6 +118,7 @@ function App() {
                   </div>
                   <TaskList
                     tasks={tasks}
+                    category={category}
                     toggleTaskCompleted={toggleTaskCompleted}
                   />
                 </Tab.Pane>

@@ -1,5 +1,6 @@
 import React from 'react';
 import TaskItem from './TaskItem';
+import { sortTaskList } from '../../api/tasks';
 import { ListGroup } from 'react-bootstrap';
 
 export default function TaskList({ 
@@ -7,26 +8,20 @@ export default function TaskList({
     togglePriority, 
     moveTask, 
     deleteTask, 
-    toggleTaskCompleted}) {
-      
-      //   const sortByPriorityAndCreationTime = (taskA, taskB) => {
-//     if (taskA.priority && !taskB.priority) {
-//         return -1;
-//     }
-//     if (!taskA.priority && taskB.priority) {
-//         return 1;
-//     }
-//      return taskA.createdAt - taskB.createdAt;
-// };
+    toggleTaskCompleted, 
+    category, }) {
 
-// const sortedTasks = [...tasks].sort(sortByPriorityAndCreationTime);
+    const filteredTasks = tasks.filter(task => task.categoryId === category.id);
 
+    const sortedTasks = sortTaskList(filteredTasks);
+    console.log(filteredTasks)
+      console.log(sortedTasks)
 
     return (
 
       <ListGroup>
       {tasks === 0 && <ListGroup.Item>No Tasks</ListGroup.Item>}
-      {tasks.map((task) => (
+      {sortedTasks.map((task) => (
         <TaskItem
           task={task} 
           key={task.id}

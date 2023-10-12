@@ -16,6 +16,20 @@
     }
 
 
+// Sort Task List
+export function sortTaskList(tasks) {
+  return tasks.slice().sort((taskA, taskB) => {
+    if (taskA.priority && !taskB.priority) {
+      return -1;
+    }
+    if (!taskA.priority && taskB.priority) {
+      return 1;
+    }
+    return taskA.createdAt - taskB.createdAt;
+  });
+}
+
+
 // Toggle Completed
 export function toggleTaskCompleted(setTasks, id, categoryId) {
   setTasks((currentTasks) => {

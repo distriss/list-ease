@@ -29,7 +29,7 @@
     height: 50px;
     line-height: 50px;
     text-align: center;
-    color: rgb(238, 106, 45);
+    color: #2b3035;
     filter: drop-shadow(2px 2px 3px rgba(51, 51, 51, .15)) ;
     transition: width 0.2s ease-in-out, height 0.2s ease-in-out, filter 0.2s ease-in-out;
     -webkit-transition: width 0.2s ease-in-out, height 0.2s ease-in-out, filter 0.2s ease-in-out;
