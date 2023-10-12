@@ -2,16 +2,35 @@ import React, { useState } from "react";
 import { Form, FormGroup, InputGroup, Dropdown, FloatingLabel, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import * as CategoriesAPI from '../../api/categories';
+import { NewCategory } from "../categories/NewCategory";
 
-export function NewTask({ onSubmit, categories }) {
+export function NewTask({ onSubmit, categories, setCategories }) {
     const [newTask, setNewTask] = useState("");
     const [selectedCategory, setSelectedCategory] = useState(null);
-
+    const [newCategory, setNewCategory] = useState("");
+    const [creatingCategory, setCreatingCategory] = useState(false);
 
     const handleCategoryChange = (eventKey) => {
-        setSelectedCategory(eventKey);
+        if (eventKey === "CreateCategory") {
+            setCreatingCategory(true);
+        } else {
+            setSelectedCategory(eventKey);
+        }       
     };
-    
+
+    const handleCreateCategory = () => {
+        if (newCategory.trim() === "") {
+            return;
+        }
+
+        CategoriesAPI.addCategory(setCategories, newCategory);
+        setSelectedCategory(categories.find((category) => category.title === newCategory).id)
+
+        setNewCategory("");
+        setCreatingCategory(false);
+    }
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -20,8 +39,7 @@ export function NewTask({ onSubmit, categories }) {
         }
 
         // get tasks
-        const existingTasks = JSON.parse(localStorage.getItem("TASKS"));
-        
+        const existingTasks = JSON.parse(localStorage.getItem("TASKS"));        
 
         const newTaskObject = {
             id: crypto.randomUUID(),
@@ -46,11 +64,20 @@ export function NewTask({ onSubmit, categories }) {
             <FormGroup>
                 <InputGroup className="mb-3">
                     <Dropdown onSelect={handleCategoryChange}>
-                        <Dropdown.Toggle variant="primary" id="category">
-                            {selectedCategory === null ? "Select Category" : categories.find(category => category.id === selectedCategory).title}
+                        <Dropdown.Toggle 
+                            variant="primary" 
+                            id="category">
+                                {selectedCategory === null 
+                                ? "Select Category" 
+                                : selectedCategory === "CreatedCategory"
+                                ? "Create New Category"
+                                : categories.find(category => category.id === selectedCategory)?.title || selectedCategory}
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
-                            <Dropdown.Item eventKey="">Default</Dropdown.Item>
+                            <Dropdown.Item eventKey="General">General</Dropdown.Item>
+                            <Dropdown.Item eventKey="Work">Work</Dropdown.Item>
+                            <Dropdown.Item eventKey="Home">Home</Dropdown.Item>
+                            <Dropdown.Item eventKey="CreateCategory">Create New Category</Dropdown.Item>
                             <Dropdown.Divider />
                             {categories.map((category) => (
                                 <Dropdown.Item key={category.id} eventKey={category.id}>
@@ -59,18 +86,28 @@ export function NewTask({ onSubmit, categories }) {
                             ))}
                         </Dropdown.Menu>
                     </Dropdown>
-                    <FloatingLabel htmlFor="task" label="New Task">
+                    {creatingCategory ? (
+                        <NewCategory
+                            handleCreateCategory={handleCreateCategory}/>
+                    ) : (
+                        <>
+                        <FloatingLabel 
+                            htmlFor={creatingCategory ? "newCategory" : "newTask"}
+                            label={creatingCategory ? "New Category" : "New Task" }
+                            >
                         <Form.Control
                             type="text"
                             placeholder="New Task"
                             value={newTask}
                             onChange={(e) => setNewTask(e.target.value)}
-                            id="task"
+                            id={creatingCategory ? "newCategory" : "newTask"}
                         />
                     </FloatingLabel>
-                    <Button variant="primary" size="lg" type="submit">
-                        <FontAwesomeIcon icon={faPlus} color="white" className="fa-plus"/>
+                    <Button variant="primary" size="lg" type="submit">Add Task
                     </Button>
+                    </>
+                    )}
+                    
                 </InputGroup>
             </FormGroup>
         </Form>

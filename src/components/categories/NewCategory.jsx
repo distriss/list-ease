@@ -3,7 +3,7 @@ import { Form, FormGroup, InputGroup, Dropdown, FloatingLabel, Col, Row, Button,
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
-export function NewCategory({ onSubmit }) {
+export function NewCategory({ onSubmit, handleCreateCategory }) {
     const [newCategory, setNewCategory] = useState("");
 
     function handleSubmit(e) {
@@ -32,23 +32,24 @@ export function NewCategory({ onSubmit }) {
     }
 
     return (
-        <Form onSubmit={handleSubmit} name="category">
-            <InputGroup className="mb-3">
-                <FloatingLabel htmlFor="category" label="New Category">
-                    <Form.Control
-                        type="text"
-                        placeholder="New Category"
-                        value={newCategory}
-                        onChange={(e) => setNewCategory(e.target.value)}
-                        id="category"
-                    />
-                </FloatingLabel>
-                <Button variant="primary" size="lg" type="submit">
-                    <FontAwesomeIcon icon={faPlus} color="white" className="fa-plus"/>
-                </Button>
-            </InputGroup>           
-        </Form>
+      <>
+        <FloatingLabel htmlFor="category" label="New Category">
+        <Form.Control
+            type="text"
+            placeholder="New Category"
+            value={newCategory}
+            onChange={(e) => setNewCategory(e.target.value)}
+            id="newCategory"
+        />
+        </FloatingLabel>
+        <Button 
+            variant="primary" 
+            size="lg"  
+            onClick={handleCreateCategory}
+            type="submit">
+                Create Category
+        </Button>
+      </>
     )
-
 
 }

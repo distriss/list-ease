@@ -72,7 +72,7 @@ function App() {
         onSubmit={addTask}
         categories={categories}
        />
-            <NewCategory onSubmit={addCategory} />
+            {/* <NewCategory onSubmit={addCategory} /> */}
       </Stack>
       <Tab.Container 
         id="list-group-tabs-example" defaultActiveKey="#link1">
