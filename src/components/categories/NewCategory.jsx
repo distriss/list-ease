@@ -31,24 +31,20 @@ export function NewCategory({ onSubmit, handleCreateCategory }) {
         setNewCategory("")
     }
 
-    return (
-      <>
-        <FloatingLabel htmlFor="category" label="New Category">
-        <Form.Control
-            type="text"
-            placeholder="New Category"
-            value={newCategory}
-            onChange={(e) => setNewCategory(e.target.value)}
-            id="newCategory"
-        />
-        </FloatingLabel>
-        <Button 
-            variant="primary" 
-            size="lg"  
-            onClick={handleCreateCategory}
-            type="submit">
-                Create Category
-        </Button>
+    return (        
+    <>
+      <Form.Label htmlFor="category" visuallyHidden>
+      New Category
+      </Form.Label>
+      <Form.Control
+        type="text"
+        size="lg"
+        placeholder="New Category"
+        value={newCategory}
+        onChange={(e) => setNewCategory(e.target.value)}
+        id="newCategory"
+        className="form-field" />
+        <Button variant="primary" size="lg" className="m-5 no-wrap-text custom-btn" type="submit" onClick={handleCreateCategory}>Create Category</Button>
       </>
     )
 

@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Stack, Tab, Row, Col, Dropdown, DropdownButton, ButtonGroup } from 'react-bootstrap';
 import Header from './components/view/Header';
-import { NewCategory } from './components/categories/NewCategory';
-import { NewTask } from './components/tasks/NewTask';
+import { NewTaskAndCategory } from './components/tasks/NewTaskAndCategory';
 import * as CategoriesAPI from './api/categories';
 import * as TasksAPI from './api/tasks';
 import TaskList from './components/tasks/TaskList';
@@ -65,14 +64,14 @@ function App() {
 
   return (
     <>
-    <Container className="w-75">
+    <Container className="w-80">
       <Header />
-      <Stack className="col-lg-8 mt-3 mb-5 mx-auto">        
-      <NewTask 
+      <Stack className="col-lg-12 mt-5 mb-5">        
+      <NewTaskAndCategory
         onSubmit={addTask}
         categories={categories}
+        setCategories={setCategories}
        />
-            {/* <NewCategory onSubmit={addCategory} /> */}
       </Stack>
       <Tab.Container 
         id="list-group-tabs-example" defaultActiveKey="#link1">
@@ -117,8 +116,7 @@ function App() {
             </Tab.Content>
           </Col>
         </Row>
-    </Tab.Container>
-     
+      </Tab.Container>     
     </Container>
 
     </>

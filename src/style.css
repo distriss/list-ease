@@ -5,6 +5,15 @@
     --primary-active-color: #1d2124;
   }
 
+  .no-wrap-text {
+    white-space: nowrap;
+  }
+  
+  .custom-btn, .form-field {
+    height: 5rem;
+  }
+
+
   .btn.btn-primary {
     background-color: var(--primary-color);
   }
@@ -19,7 +28,8 @@
 
   .dropdown-toggle::after {
     display:none !important;
-}
+  }
+
   .list-group-item:focus {
     background-color: #2b3035;
   }
@@ -71,6 +81,12 @@
   .fa-trash {
     width: 20px;
     height: 20px;
+  }
+
+  .fa-caret {
+    width: 25px;
+    height: 25px;
+    color: white;
   }
 
   .jump-animation {
