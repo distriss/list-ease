@@ -63,13 +63,13 @@ export function NewTaskAndCategory({ onSubmit, categories, setCategories }) {
     return (
     <Form onSubmit={handleSubmit} name="task">
       <Row className="align-items-center">
-        <Col className="d-flex align-items-center">
-          <Dropdown onSelect={handleCategoryChange} className="m-5">
+        <Col className="d-lg-flex align-items-center text-center">
+          <Dropdown onSelect={handleCategoryChange} className="m-lg-3 mb-3 mb-md-3">
             <Dropdown.Toggle 
                 variant="primary" 
                 id="category"
                 size="lg"
-                className="custom-btn">
+                className="custom-dropdown d-flex  align-items-center px-5">
                   {selectedCategory === null 
                   ? "Select Category" 
                   : selectedCategory === "CreatedCategory"
@@ -108,8 +108,8 @@ export function NewTaskAndCategory({ onSubmit, categories, setCategories }) {
               value={newTask}
               onChange={(e) => setNewTask(e.target.value)}
               id="newTask"
-              className="form-field" />
-            <Button variant="primary" size="lg" className="m-5 no-wrap-text custom-btn" type="submit">Add Task</Button>
+              className="form-field m-lg-3 mb-3 mb-md-3" />
+            <Button variant="primary" size="lg" className="m-lg-3 mb-3 mb-md-3 no-wrap-text custom-btn px-5" type="submit">Add Task</Button>
                      </>
         )}
         </Col>

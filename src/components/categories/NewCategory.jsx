@@ -43,8 +43,8 @@ export function NewCategory({ onSubmit, handleCreateCategory }) {
         value={newCategory}
         onChange={(e) => setNewCategory(e.target.value)}
         id="newCategory"
-        className="form-field" />
-        <Button variant="primary" size="lg" className="m-5 no-wrap-text custom-btn" type="submit" onClick={handleCreateCategory}>Create Category</Button>
+        className="form-field m-lg-3 mb-3 mb-md-3" />
+        <Button variant="primary" size="lg" className="m-lg-3 mb-3 mb-md-3 no-wrap-text custom-btn px-5" type="submit" onClick={handleCreateCategory}>Create Category</Button>
       </>
     )
 
