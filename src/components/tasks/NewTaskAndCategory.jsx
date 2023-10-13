@@ -12,14 +12,20 @@ export function NewTaskAndCategory({ onSubmit, categories, setCategories }) {
     const [creatingCategory, setCreatingCategory] = useState(false);
 
     const handleCategoryChange = (eventKey) => {
-        if (eventKey === "CreateCategory") {
+        if (eventKey === "newCategory") {
+          if (creatingCategory) {
+            setCreatingCategory(false);
+            setSelectedCategory(null);
+          } else {
             setCreatingCategory(true);
+            setSelectedCategory("New Category")
+          }
         } else {
             setSelectedCategory(eventKey);
         }       
     };
 
-    const handleCreateCategory = () => {
+    const handleNewCategory = () => {
         if (newCategory.trim() === "") {
             return;
         }
@@ -70,6 +76,7 @@ export function NewTaskAndCategory({ onSubmit, categories, setCategories }) {
                 id="category"
                 size="lg"
                 className="custom-dropdown d-flex  align-items-center px-5">
+                  
                   {selectedCategory === null 
                   ? "Select Category" 
                   : selectedCategory === "CreatedCategory"
@@ -81,7 +88,9 @@ export function NewTaskAndCategory({ onSubmit, categories, setCategories }) {
                   />
             </Dropdown.Toggle>
             <Dropdown.Menu>
-                <Dropdown.Item eventKey="CreateCategory">Create New Category</Dropdown.Item>
+                <Dropdown.Item eventKey="newCategory">
+                  {creatingCategory ? "New Task" : "New Category"}
+                </Dropdown.Item>
                 <Dropdown.Divider />
                 <Dropdown.Item eventKey="General">General</Dropdown.Item>
                 <Dropdown.Item eventKey="Work">Work</Dropdown.Item>
@@ -95,7 +104,7 @@ export function NewTaskAndCategory({ onSubmit, categories, setCategories }) {
           </Dropdown>
         {creatingCategory ? (
           <NewCategory
-            handleCreateCategory={handleCreateCategory}/>
+            handleNewCategory={handleNewCategory}/>
           ) : (
           <>
             <Form.Label htmlFor="newTask" visuallyHidden>
