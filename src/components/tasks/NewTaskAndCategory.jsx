@@ -5,7 +5,7 @@ import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
 import * as CategoriesAPI from '../../api/categories';
 import { NewCategory } from "../categories/NewCategory";
 
-export function NewTaskAndCategory({ onSubmit, categories, setCategories }) {
+export function NewTaskAndCategory({ onSubmit, categories, addCategory, setCategories }) {
     const [newTask, setNewTask] = useState("");
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [newCategory, setNewCategory] = useState("");
@@ -20,12 +20,13 @@ export function NewTaskAndCategory({ onSubmit, categories, setCategories }) {
             setCreatingCategory(true);
             setSelectedCategory("New Category")
           }
+          setNewTask("");
         } else {
             setSelectedCategory(eventKey);
         }       
     };
 
-    const handleNewCategory = () => {
+    const handleNewCategory = (newCategory) => {
         if (newCategory.trim() === "") {
             return;
         }
@@ -39,31 +40,52 @@ export function NewTaskAndCategory({ onSubmit, categories, setCategories }) {
 
 
     const handleSubmit = (e) => {
-        e.preventDefault();
-        if (newTask.trim() === "" || selectedCategory === null) {
-            return;
+      e.preventDefault();
+      if (newTask.trim() === "" || selectedCategory === null) {
+        return;
+      }
+    
+      // Get tasks
+      const existingTasks = JSON.parse(localStorage.getItem("TASKS"));
+    
+      let categoryId;
+          
+      if (selectedCategory === "General" || selectedCategory === "Work" || selectedCategory === "Home") {
+        const existingCategory = categories.find((category) => category.title === selectedCategory);
+    
+        if (existingCategory) {
+          categoryId = existingCategory.id;
+        } else {
+          const newCategory = CategoriesAPI.addCategory(setCategories, selectedCategory);
+          categoryId = newCategory.id;
         }
-
-        // get tasks
-        const existingTasks = JSON.parse(localStorage.getItem("TASKS"));        
-
-        const newTaskObject = {
-            id: crypto.randomUUID(),
-            title: newTask,
-            categoryId: selectedCategory,
-            createdAt: Date.now(),
-            priority: false,
-            completed: false,
-            notes: "",
-        }        
-
-        existingTasks.push(newTaskObject);
-        
-        localStorage.setItem("TASKS", JSON.stringify(existingTasks))
-
-        onSubmit(newTask, selectedCategory)
-        setNewTask("")
+      } else {
+        categoryId = selectedCategory;
+      }
+    
+      const newTaskObject = {
+        id: crypto.randomUUID(),
+        title: newTask,
+        categoryId: categoryId,
+        createdAt: Date.now(),
+        priority: false,
+        completed: false,
+        notes: "",
+      };
+    
+      existingTasks.push(newTaskObject);
+    
+      localStorage.setItem("TASKS", JSON.stringify(existingTasks));
+    
+      onSubmit(newTask, categoryId);
+      setNewTask("");
     };
+
+    function filterDefaultCategories(categories) {
+      return categories.filter((category) => !["General", "Work", "Home"].includes(category.title));
+    }
+    
+
 
 
     return (
@@ -95,16 +117,19 @@ export function NewTaskAndCategory({ onSubmit, categories, setCategories }) {
                 <Dropdown.Item eventKey="General">General</Dropdown.Item>
                 <Dropdown.Item eventKey="Work">Work</Dropdown.Item>
                 <Dropdown.Item eventKey="Home">Home</Dropdown.Item>
-                {categories.map((category) => (
-                    <Dropdown.Item key={category.id} eventKey={category.id}>
-                        {category.title}
-                    </Dropdown.Item>
+                <Dropdown.Divider />
+                {filterDefaultCategories(categories).map((category) => (
+                  <Dropdown.Item key={category.id} eventKey={category.id}>
+                    {category.title}
+                  </Dropdown.Item>
                 ))}
             </Dropdown.Menu>
           </Dropdown>
         {creatingCategory ? (
           <NewCategory
-            handleNewCategory={handleNewCategory}/>
+            handleNewCategory={handleNewCategory}
+            addCategory={addCategory}
+            setCategories={setCategories} />
           ) : (
           <>
             <Form.Label htmlFor="newTask" visuallyHidden>

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Form, FormGroup, InputGroup, Dropdown, FloatingLabel, Col, Row, Button, DropdownButton } from 'react-bootstrap';
+import { Form, Button} from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
-
-export function NewCategory({ onSubmit, handleCreateCategory }) {
+export function NewCategory({ setCategories}) {
     const [newCategory, setNewCategory] = useState("");
+
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -21,12 +21,15 @@ export function NewCategory({ onSubmit, handleCreateCategory }) {
             completed: false,
         };
 
-        // add new category to existing categories
         existingCategories.push(newCategoryObject);
 
         localStorage.setItem("CATEGORIES", JSON.stringify(existingCategories))
         
-        onSubmit(newCategory)
+       
+        setCategories((currentCategories) => [
+          ...currentCategories,
+          newCategoryObject,
+        ]); 
 
         setNewCategory("")
     }
@@ -44,7 +47,7 @@ export function NewCategory({ onSubmit, handleCreateCategory }) {
         onChange={(e) => setNewCategory(e.target.value)}
         id="newCategory"
         className="form-field m-lg-3 mb-3 mb-md-3" />
-        <Button variant="primary" size="lg" className="m-lg-3 mb-3 mb-md-3 no-wrap-text custom-btn px-5" type="submit" onClick={handleCreateCategory}>Create Category</Button>
+        <Button variant="primary" size="lg" className="m-lg-3 mb-3 mb-md-3 no-wrap-text custom-btn px-5" type="submit" onClick={handleSubmit}>Create Category</Button>
       </>
     )
 

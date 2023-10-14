@@ -20,9 +20,7 @@ function App() {
     if (localCategories) {
       setCategories(JSON.parse(localCategories));
     } 
-  }, []);
-  
-  useEffect(() => {
+
     const localTasks = localStorage.getItem('TASKS');
     if (localTasks) {
       setTasks(JSON.parse(localTasks));
@@ -40,8 +38,8 @@ function App() {
   
   // Category Functions  
   // Add Category
-  function addCategory(title) {
-    CategoriesAPI.addCategory(setCategories, title);
+  function addCategory(title, categories) {
+    CategoriesAPI.addCategory(categories, setCategories, title);
   }
  
   function toggleCategoryPriority(id, priority, categoryId) {
@@ -70,6 +68,7 @@ function App() {
       <NewTaskAndCategory
         onSubmit={addTask}
         categories={categories}
+        addCategory={addCategory}
         setCategories={setCategories}
        />
       </Stack>

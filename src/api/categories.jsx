@@ -13,6 +13,22 @@
     })
   }
 
+  // // Add Category
+  // export function addCategory(setCategories, title) {
+  //   setCategories(currentCategories => {
+  //     return [
+  //       ...currentCategories, 
+  //       { id: crypto.randomUUID(), 
+  //         title: title,
+  //         createdAt: Date.now(),
+  //         priority: false,
+  //         completed: false,
+  //       }
+  //     ]
+  //   })
+  // }
+
+
   // Toggle Category
   export function toggleCategory(setCategories, categories, id, priority) {
     setCategories(currentCategories => {
