@@ -38,8 +38,8 @@ function App() {
   
   // Category Functions  
   // Add Category
-  function addCategory(title, categories) {
-    CategoriesAPI.addCategory(categories, setCategories, title);
+  function addCategory(title) {
+    CategoriesAPI.addCategory(setCategories, title);
   }
  
   function toggleCategoryPriority(id, priority, categoryId) {
