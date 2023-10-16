@@ -21,7 +21,10 @@ export function NewTaskAndCategory({ onSubmit, categories, addCategory, setCateg
             setSelectedCategory("New Category")
           }
           setNewTask("");
-        } else {
+        } else if (eventKey === "General" || eventKey === "Work" || eventKey === "Home") {
+          setCreatingCategory(false);
+          setSelectedCategory(eventKey)
+        }else {
             setSelectedCategory(eventKey);
         }       
     };
@@ -128,6 +131,7 @@ export function NewTaskAndCategory({ onSubmit, categories, addCategory, setCateg
         {creatingCategory ? (
           <NewCategory
             handleNewCategory={handleNewCategory}
+            onSubmit={addCategory}
             addCategory={addCategory}
             setCategories={setCategories} />
           ) : (
