@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Form, Row, Col, FormGroup, InputGroup, Dropdown, FloatingLabel, Button } from 'react-bootstrap';
+import React, { useState, useEffect } from "react";
+import { Form, Row, Col, Alert, FormGroup, InputGroup, Dropdown, FloatingLabel, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
 import * as CategoriesAPI from '../../api/categories';
@@ -10,7 +10,16 @@ export function NewTaskAndCategory({ onSubmit, categories, addCategory, setCateg
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [newCategory, setNewCategory] = useState("");
     const [creatingCategory, setCreatingCategory] = useState(false);
+    const [showAlert, setShowAlert] = useState(false);
 
+
+    useEffect(() => {
+      if (selectedCategory !== "New Category" && creatingCategory) {
+        setCreatingCategory(false);
+      }
+    }, [selectedCategory, creatingCategory]);
+
+    
     const handleCategoryChange = (eventKey) => {
         if (eventKey === "newCategory") {
           if (creatingCategory) {
@@ -23,9 +32,15 @@ export function NewTaskAndCategory({ onSubmit, categories, addCategory, setCateg
           setNewTask("");
         } else if (eventKey === "General" || eventKey === "Work" || eventKey === "Home") {
           setCreatingCategory(false);
+          const existingCategory = categories.find((category) => category.title === eventKey);
+          if (!existingCategory) {
+            CategoriesAPI.addCategory(setCategories, eventKey)
+          }
           setSelectedCategory(eventKey)
+          setShowAlert(false);
         }else {
             setSelectedCategory(eventKey);
+            setShowAlert(false);
         }       
     };
 
@@ -39,12 +54,14 @@ export function NewTaskAndCategory({ onSubmit, categories, addCategory, setCateg
 
         setNewCategory("");
         setCreatingCategory(false);
+        setShowAlert(false);
     }
 
 
     const handleSubmit = (e) => {
       e.preventDefault();
       if (newTask.trim() === "" || selectedCategory === null) {
+        setShowAlert(true)
         return;
       }
     
@@ -52,7 +69,8 @@ export function NewTaskAndCategory({ onSubmit, categories, addCategory, setCateg
       const existingTasks = JSON.parse(localStorage.getItem("TASKS"));
     
       let categoryId;
-          
+
+      
       if (selectedCategory === "General" || selectedCategory === "Work" || selectedCategory === "Home") {
         const existingCategory = categories.find((category) => category.title === selectedCategory);
     
@@ -82,6 +100,8 @@ export function NewTaskAndCategory({ onSubmit, categories, addCategory, setCateg
     
       onSubmit(newTask, categoryId);
       setNewTask("");
+      setShowAlert(false);
+      
     };
 
     function filterDefaultCategories(categories) {
@@ -96,7 +116,12 @@ export function NewTaskAndCategory({ onSubmit, categories, addCategory, setCateg
       <Row className="align-items-center">
         <Col className="d-lg-flex align-items-center text-center">
           <Dropdown onSelect={handleCategoryChange} className="m-lg-3 mb-3 mb-md-3">
-            <Dropdown.Toggle 
+          {showAlert && (
+            <Alert key="danger" variant="danger" className="position-absolute start-50 translate-middle-x" style={{ top: '-100px' }}>
+              Please choose a Category.
+            </Alert>
+          )}
+           <Dropdown.Toggle 
                 variant="primary" 
                 id="category"
                 size="lg"
@@ -113,13 +138,13 @@ export function NewTaskAndCategory({ onSubmit, categories, addCategory, setCateg
                   />
             </Dropdown.Toggle>
             <Dropdown.Menu>
+                <Dropdown.Item eventKey="General">General</Dropdown.Item>
+                <Dropdown.Item eventKey="Work">Work</Dropdown.Item>
+                <Dropdown.Item eventKey="Home">Home</Dropdown.Item>                
+                <Dropdown.Divider />                
                 <Dropdown.Item eventKey="newCategory">
                   {creatingCategory ? "New Task" : "New Category"}
                 </Dropdown.Item>
-                <Dropdown.Divider />
-                <Dropdown.Item eventKey="General">General</Dropdown.Item>
-                <Dropdown.Item eventKey="Work">Work</Dropdown.Item>
-                <Dropdown.Item eventKey="Home">Home</Dropdown.Item>
                 <Dropdown.Divider />
                 {filterDefaultCategories(categories).map((category) => (
                   <Dropdown.Item key={category.id} eventKey={category.id}>

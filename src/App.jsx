@@ -35,7 +35,6 @@ function App() {
     localStorage.setItem("TASKS", JSON.stringify(tasks));
   }, [tasks]);
 
-  
   // Category Functions  
   // Add Category
   function addCategory(title) {
