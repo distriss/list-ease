@@ -45,6 +45,8 @@ function App() {
     CategoriesAPI.toggleCategoryPriority(setCategories, categories, id, priority, categoryId)
   }
 
+  // Delete Category
+
   
   // Tasks functions
   // Add Task
@@ -57,6 +59,10 @@ function App() {
     TasksAPI.toggleTaskCompleted(setTasks, id, categoryId)
   }
  
+  // Delete Task
+  function deleteTask (id) {
+    TasksAPI.deleteTask(setTasks, id)
+  }
 
 
   return (
@@ -108,6 +114,7 @@ function App() {
                     tasks={tasks}
                     category={category}
                     toggleTaskCompleted={toggleTaskCompleted}
+                    deleteTask={deleteTask}
                   />
                 </Tab.Pane>
               ))}
