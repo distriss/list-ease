@@ -44,3 +44,12 @@ export function toggleTaskCompleted(setTasks, id, categoryId) {
     })
   })
 }
+
+// Delete Task
+export function deleteTask(setTasks, id) {
+  setTasks((currentTasks) => {
+    const updatedTasks = currentTasks.filter(task => task.id !== id);
+    localStorage.setItem("TASKS", JSON.stringify(updatedTasks));
+    return updatedTasks;
+  });
+}

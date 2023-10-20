@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 export default function TaskItem({ 
-  task, toggleTaskCompleted}) {
+  task, toggleTaskCompleted, deleteTask}) {
 
     const  {id, title, notes, completed, categoryId } = task;
 

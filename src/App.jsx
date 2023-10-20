@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Stack, Tab, Row, Col, Dropdown, DropdownButton, ButtonGroup } from 'react-bootstrap';
 import Header from './components/view/Header';
-import { NewCategory } from './components/categories/NewCategory';
-import { NewTask } from './components/tasks/NewTask';
+import { NewTaskAndCategory } from './components/tasks/NewTaskAndCategory';
 import * as CategoriesAPI from './api/categories';
 import * as TasksAPI from './api/tasks';
 import TaskList from './components/tasks/TaskList';
@@ -21,9 +20,7 @@ function App() {
     if (localCategories) {
       setCategories(JSON.parse(localCategories));
     } 
-  }, []);
-  
-  useEffect(() => {
+
     const localTasks = localStorage.getItem('TASKS');
     if (localTasks) {
       setTasks(JSON.parse(localTasks));
@@ -38,7 +35,6 @@ function App() {
     localStorage.setItem("TASKS", JSON.stringify(tasks));
   }, [tasks]);
 
-  
   // Category Functions  
   // Add Category
   function addCategory(title) {
@@ -48,6 +44,8 @@ function App() {
   function toggleCategoryPriority(id, priority, categoryId) {
     CategoriesAPI.toggleCategoryPriority(setCategories, categories, id, priority, categoryId)
   }
+
+  // Delete Category
 
   
   // Tasks functions
@@ -61,18 +59,23 @@ function App() {
     TasksAPI.toggleTaskCompleted(setTasks, id, categoryId)
   }
  
+  // Delete Task
+  function deleteTask (id) {
+    TasksAPI.deleteTask(setTasks, id)
+  }
 
 
   return (
     <>
-    <Container className="w-75">
+    <Container className="w-80">
       <Header />
-      <Stack className="col-lg-8 mt-3 mb-5 mx-auto">        
-      <NewTask 
+      <Stack className="col-lg-12 mt-5 mb-5">        
+      <NewTaskAndCategory
         onSubmit={addTask}
         categories={categories}
+        addCategory={addCategory}
+        setCategories={setCategories}
        />
-            <NewCategory onSubmit={addCategory} />
       </Stack>
       <Tab.Container 
         id="list-group-tabs-example" defaultActiveKey="#link1">
@@ -111,14 +114,14 @@ function App() {
                     tasks={tasks}
                     category={category}
                     toggleTaskCompleted={toggleTaskCompleted}
+                    deleteTask={deleteTask}
                   />
                 </Tab.Pane>
               ))}
             </Tab.Content>
           </Col>
         </Row>
-    </Tab.Container>
-     
+      </Tab.Container>     
     </Container>
 
     </>

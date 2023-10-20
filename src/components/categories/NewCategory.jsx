@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Form, FormGroup, InputGroup, Dropdown, FloatingLabel, Col, Row, Button, DropdownButton } from 'react-bootstrap';
+import { Form, Button} from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
-
-export function NewCategory({ onSubmit }) {
+export function NewCategory({ setCategories}) {
     const [newCategory, setNewCategory] = useState("");
+
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -21,34 +21,34 @@ export function NewCategory({ onSubmit }) {
             completed: false,
         };
 
-        // add new category to existing categories
         existingCategories.push(newCategoryObject);
 
         localStorage.setItem("CATEGORIES", JSON.stringify(existingCategories))
         
-        onSubmit(newCategory)
+       
+        setCategories((currentCategories) => [
+          ...currentCategories,
+          newCategoryObject,
+        ]); 
 
         setNewCategory("")
     }
 
-    return (
-        <Form onSubmit={handleSubmit} name="category">
-            <InputGroup className="mb-3">
-                <FloatingLabel htmlFor="category" label="New Category">
-                    <Form.Control
-                        type="text"
-                        placeholder="New Category"
-                        value={newCategory}
-                        onChange={(e) => setNewCategory(e.target.value)}
-                        id="category"
-                    />
-                </FloatingLabel>
-                <Button variant="primary" size="lg" type="submit">
-                    <FontAwesomeIcon icon={faPlus} color="white" className="fa-plus"/>
-                </Button>
-            </InputGroup>           
-        </Form>
+    return (        
+    <>
+      <Form.Label htmlFor="category" visuallyHidden>
+      New Category
+      </Form.Label>
+      <Form.Control
+        type="text"
+        size="lg"
+        placeholder="New Category"
+        value={newCategory}
+        onChange={(e) => setNewCategory(e.target.value)}
+        id="newCategory"
+        className="form-field m-lg-3 mb-3 mb-md-3" />
+        <Button variant="primary" size="lg" className="m-lg-3 mb-3 mb-md-3 no-wrap-text custom-btn px-5" type="submit" onClick={handleSubmit}>Create Category</Button>
+      </>
     )
-
 
 }
