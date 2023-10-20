@@ -14,6 +14,7 @@ import './style.css';
 function App() {
   const [categories, setCategories] = useState([]);
   const [tasks, setTasks] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(null);
  
   useEffect(() => {
     const localCategories = localStorage.getItem('CATEGORIES');
@@ -45,9 +46,19 @@ function App() {
     CategoriesAPI.toggleCategoryPriority(setCategories, categories, id, priority, categoryId)
   }
 
-  // Delete Category
-  function deleteCategory(id) {
-    CategoriesAPI.deleteCategory(setCategories, id);
+  // Delete Category with Associated Tasks
+  function deleteCategory(id, selectedCategory, categoryId) {
+    const category = categories.find(category => category.id === id);
+    if (!category) return;
+    const confirmDelete = window.confirm(`Are you sure you want to delete the category "${category.title}" and all its tasks?`);
+
+    if (confirmDelete) {
+      CategoriesAPI.deleteCategory(setCategories, setTasks, id, setSelectedCategory);      
+    }
+
+    if (selectedCategory === categoryId) {
+      setSelectedCategory(null); 
+    }
   }
 
   
@@ -78,6 +89,8 @@ function App() {
         categories={categories}
         addCategory={addCategory}
         setCategories={setCategories}
+        selectedCategory={selectedCategory}
+        setSelectedCategory={setSelectedCategory}
        />
       </Stack>
       <Tab.Container 

@@ -50,11 +50,22 @@
 
 
   // Delete Category
-  export function deleteCategory(setCategories, id) {
+  export function deleteCategory(setCategories, setTasks, id, setSelectedCategory) {
+
     setCategories((currentCategories) => {
-      const updatedCategories = currentCategories.filter(category => category.id !== id);
+      const updatedCategories = currentCategories.filter((category) => category.id !== id);
       localStorage.setItem("CATEGORIES", JSON.stringify(updatedCategories));
       return updatedCategories;
     });
+  
+    // Delete associated tasks
+    setTasks((currentTasks) => {
+      const updatedTasks = currentTasks.filter((task) => task.categoryId !== id);
+      localStorage.setItem("TASKS", JSON.stringify(updatedTasks));
+      return updatedTasks;
+    });
+
+    setSelectedCategory(null);
+
   }
   

@@ -5,9 +5,16 @@ import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
 import * as CategoriesAPI from '../../api/categories';
 import { NewCategory } from "../categories/NewCategory";
 
-export function NewTaskAndCategory({ onSubmit, categories, addCategory, setCategories }) {
+export function NewTaskAndCategory({ 
+  onSubmit, 
+  categories, 
+  addCategory, 
+  setCategories,
+  selectedCategory,
+  setSelectedCategory,
+}) {
+  
     const [newTask, setNewTask] = useState("");
-    const [selectedCategory, setSelectedCategory] = useState(null);
     const [newCategory, setNewCategory] = useState("");
     const [creatingCategory, setCreatingCategory] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
@@ -38,10 +45,10 @@ export function NewTaskAndCategory({ onSubmit, categories, addCategory, setCateg
           }
           setSelectedCategory(eventKey)
           setShowAlert(false);
-        }else {
+        } else {
             setSelectedCategory(eventKey);
             setShowAlert(false);
-        }       
+        }      
     };
 
     const handleNewCategory = (newCategory) => {
@@ -104,12 +111,10 @@ export function NewTaskAndCategory({ onSubmit, categories, addCategory, setCateg
       
     };
 
-    function filterDefaultCategories(categories) {
+    function customCategories(categories) {
       return categories.filter((category) => !["General", "Work", "Home"].includes(category.title));
     }
     
-
-
 
     return (
     <Form onSubmit={handleSubmit} name="task">
@@ -146,7 +151,7 @@ export function NewTaskAndCategory({ onSubmit, categories, addCategory, setCateg
                   {creatingCategory ? "New Task" : "New Category"}
                 </Dropdown.Item>
                 <Dropdown.Divider />
-                {filterDefaultCategories(categories).map((category) => (
+                {customCategories(categories).map((category) => (
                   <Dropdown.Item key={category.id} eventKey={category.id}>
                     {category.title}
                   </Dropdown.Item>
