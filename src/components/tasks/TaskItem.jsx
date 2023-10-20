@@ -32,7 +32,7 @@ export default function TaskItem({
             <div className="ms-auto">
               <FontAwesomeIcon
                 icon={faTrash}
-                className='icon fa-trash text-danger'
+                className='icon icon-zoom fa-trash text-danger'
                 onClick={() => deleteTask(id)}
                 style={{cursor: "pointer" }}
               />

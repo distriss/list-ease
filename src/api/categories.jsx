@@ -13,21 +13,6 @@
     })
   }
 
-  // // Add Category
-  // export function addCategory(setCategories, title) {
-  //   setCategories(currentCategories => {
-  //     return [
-  //       ...currentCategories, 
-  //       { id: crypto.randomUUID(), 
-  //         title: title,
-  //         createdAt: Date.now(),
-  //         priority: false,
-  //         completed: false,
-  //       }
-  //     ]
-  //   })
-  // }
-
 
   // Toggle Category
   export function toggleCategory(setCategories, categories, id, priority) {
@@ -54,7 +39,6 @@
     }
   }
   
-
   // Select Category
   export function selectCategory(setCategories, categories, id) {
     const selectedCategory = categories.find(category => category.id === id);
@@ -66,8 +50,11 @@
 
 
   // Delete Category
-  export function deleteCategory(setCategories, categories, id) {
-    setCategories(currentCategories => {
-      return currentCategories.filter(category => category.id !== id)
-    })
+  export function deleteCategory(setCategories, id) {
+    setCategories((currentCategories) => {
+      const updatedCategories = currentCategories.filter(category => category.id !== id);
+      localStorage.setItem("CATEGORIES", JSON.stringify(updatedCategories));
+      return updatedCategories;
+    });
   }
+  

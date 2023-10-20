@@ -46,6 +46,9 @@ function App() {
   }
 
   // Delete Category
+  function deleteCategory(id) {
+    CategoriesAPI.deleteCategory(setCategories, id);
+  }
 
   
   // Tasks functions
@@ -83,7 +86,8 @@ function App() {
           <Col sm={5}>
             <CategoryList 
             categories={categories} 
-            toggleCategoryPriority={toggleCategoryPriority} />
+            toggleCategoryPriority={toggleCategoryPriority}
+            />
           </Col>
           <Col sm={7}>
             <Tab.Content>
@@ -107,7 +111,11 @@ function App() {
                       <Dropdown.Item eventKey="1">Set Priority</Dropdown.Item>
                       <Dropdown.Item eventKey="2">Clear Completed</Dropdown.Item>
                       <Dropdown.Divider />
-                      <Dropdown.Item eventKey="3">Delete Category</Dropdown.Item>
+                      <Dropdown.Item 
+                        eventKey="3"
+                        onClick={() => deleteCategory(category.id)}
+                        >
+                          Delete Category</Dropdown.Item>
                     </DropdownButton>
                   </div>
                   <TaskList
