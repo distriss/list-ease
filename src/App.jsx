@@ -41,7 +41,8 @@ function App() {
   function addCategory(title) {
     CategoriesAPI.addCategory(setCategories, title);
   }
- 
+  
+  // Category Priority
   function toggleCategoryPriority(id, priority, categoryId) {
     CategoriesAPI.toggleCategoryPriority(setCategories, categories, id, priority, categoryId)
   }
@@ -72,7 +73,12 @@ function App() {
   function toggleTaskCompleted(id, categoryId) {
     TasksAPI.toggleTaskCompleted(setTasks, id, categoryId)
   }
- 
+
+  // Toggle Task Priority
+  function toggleTaskPriority(id, priority, categoryId) {
+    TasksAPI.toggleTaskPriority(setTasks, tasks, id, priority, categoryId)
+  }
+
   // Delete Task
   function deleteTask (id) {
     TasksAPI.deleteTask(setTasks, id)
@@ -135,6 +141,7 @@ function App() {
                     tasks={tasks}
                     category={category}
                     toggleTaskCompleted={toggleTaskCompleted}
+                    toggleTaskPriority={toggleTaskPriority}
                     deleteTask={deleteTask}
                   />
                 </Tab.Pane>

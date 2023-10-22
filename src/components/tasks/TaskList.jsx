@@ -5,7 +5,7 @@ import { ListGroup } from 'react-bootstrap';
 
 export default function TaskList({ 
     tasks,
-    togglePriority, 
+    toggleTaskPriority, 
     moveTask, 
     deleteTask, 
     toggleTaskCompleted, 
@@ -24,7 +24,7 @@ export default function TaskList({
           task={task} 
           key={task.id}
           {...task}
-          togglePriority={togglePriority}
+          toggleTaskPriority={toggleTaskPriority}
           moveTask={moveTask}
           deleteTask={deleteTask}
           toggleTaskCompleted={toggleTaskCompleted}

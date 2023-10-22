@@ -1,16 +1,30 @@
 import React, { useState } from 'react';
 import { ListGroup, Form } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faStar, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 export default function TaskItem({ 
-  task, toggleTaskCompleted, deleteTask}) {
+  task,
+  priority, 
+  toggleTaskCompleted, 
+  toggleTaskPriority,
+  deleteTask,  
+  }) {
 
     const  {id, title, notes, completed, categoryId } = task;
 
     const handleCheckboxChange = () => {
       toggleTaskCompleted(id, categoryId);
     };
+
+    const [starPriority, setStarPriority] = useState(
+      priority ? 'fa-star-priority' : ''
+    );
+
+    const handlePriority = () => {
+      toggleTaskPriority(task.id, !task.priority);
+      setStarPriority(!task.priority ? 'fa-star-priority' : '');
+    }
     
     return (
         <ListGroup.Item
@@ -29,6 +43,13 @@ export default function TaskItem({
               />
             </div>
             <h5>{title}</h5>
+            <div className={`p-2 ms-auto ${starPriority === 'fa-star-priority' ? 'jump-animation' : ''}`}>     
+              <FontAwesomeIcon 
+                icon={faStar} 
+                className={`icon icon-zoom fa-star ${starPriority}`}
+                onClick={handlePriority}
+                />
+            </div>
             <div className="ms-auto">
               <FontAwesomeIcon
                 icon={faTrash}

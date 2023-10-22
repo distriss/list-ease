@@ -45,6 +45,17 @@ export function toggleTaskCompleted(setTasks, id, categoryId) {
   })
 }
 
+// Toggle Priority
+export function toggleTaskPriority(setTasks, tasks, id, priority) {
+  const taskPriority = tasks.find((task) => task.id === id)
+  if (taskPriority) {
+    const updateTask = {...taskPriority, priority: !taskPriority.priority}
+    const updatedTasks = tasks.map((task) => task.id === id ? updateTask : task);
+    setTasks(updatedTasks);
+  }
+}
+
+
 // Delete Task
 export function deleteTask(setTasks, id) {
   setTasks((currentTasks) => {
