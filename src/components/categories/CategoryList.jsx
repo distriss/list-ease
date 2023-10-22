@@ -11,7 +11,7 @@ const CategoryList = ({ categories, toggleCategoryPriority }) => {
       return a.createdAt - b.createdAt; 
     })
     .map((category, index) => (
-      <ListGroup.Item key={category.id} action href={`#link${index + 1}`}>
+      <ListGroup.Item key={category.id} action href={`#link${category.id}`}>
         <CategoryItem
           key={category.id}
           category={category}

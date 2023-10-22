@@ -113,11 +113,11 @@ function App() {
               {categories.map((category, index) => (
                 <Tab.Pane 
                   key={category.id} 
-                  eventKey={`#link${index + 1}`}
+                  eventKey={`#link${category.id}`}
                   className="px-0 mx-auto"
                   >                  
                   <div className="d-flex justify-content-between align-items-start mb-3">
-                    <h3 className="p-0 m-0">{category.title}</h3>
+                    <h3 className="p-0 mx-4">{category.title}</h3>
                     <DropdownButton
                       as={ButtonGroup}
                       key="end"

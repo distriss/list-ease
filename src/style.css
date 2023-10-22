@@ -78,9 +78,14 @@
     color: rgb(255, 196, 0);
   }
 
+  .fa-pen {
+    width: 30px;
+    height: 30px;
+  }
+
   .fa-trash {
-    width: 20px;
-    height: 20px;
+    width: 27px;
+    height: 27px;
   }
 
   .fa-caret {
