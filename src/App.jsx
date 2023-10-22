@@ -15,6 +15,7 @@ function App() {
   const [categories, setCategories] = useState([]);
   const [tasks, setTasks] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [priority, setPriority] = useState([]);
  
   useEffect(() => {
     const localCategories = localStorage.getItem('CATEGORIES');
@@ -75,8 +76,8 @@ function App() {
   }
 
   // Toggle Task Priority
-  function toggleTaskPriority(id, priority, categoryId) {
-    TasksAPI.toggleTaskPriority(setTasks, tasks, id, priority, categoryId)
+  function toggleTaskPriority(id, priority) {
+    TasksAPI.toggleTaskPriority(setTasks, tasks, id, priority)
   }
 
   // Delete Task

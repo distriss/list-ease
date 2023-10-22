@@ -47,12 +47,8 @@ export function toggleTaskCompleted(setTasks, id, categoryId) {
 
 // Toggle Priority
 export function toggleTaskPriority(setTasks, tasks, id, priority) {
-  const taskPriority = tasks.find((task) => task.id === id)
-  if (taskPriority) {
-    const updateTask = {...taskPriority, priority: !taskPriority.priority}
-    const updatedTasks = tasks.map((task) => task.id === id ? updateTask : task);
-    setTasks(updatedTasks);
-  }
+  const updatedTasks = tasks.map((task) => task.id === id ? {...task, priority } : task);
+  setTasks(updatedTasks)
 }
 
 

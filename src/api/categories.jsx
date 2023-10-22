@@ -14,29 +14,12 @@
   }
 
 
-  // Toggle Category
-  export function toggleCategory(setCategories, categories, id, priority) {
-    setCategories(currentCategories => {
-      return currentCategories.map(category => {
-        if(category.id === id) {
-          return {...category, priority}
-        }
-
-        return category
-      })
-    })
-  }
-
   // Toggle Priority
   export function toggleCategoryPriority(setCategories, categories, id, priority) {
-    const categoryPriority = categories.find((category) => category.id === id)
-    if (categoryPriority) {
-      const updatedCategory = { ...categoryPriority, priority: !categoryPriority.priority }
-      const updatedCategories = categories.map((category) =>
-        category.id === id ? updatedCategory : category
-      );
-      setCategories(updatedCategories);
-    }
+    const updatedCategories = categories.map((category) =>
+      category.id === id ? { ...category, priority } : category
+    );
+    setCategories(updatedCategories);
   }
   
   // Select Category
@@ -48,6 +31,18 @@
     }
   }
 
+  // Sort Category List
+  export function sortCategoryList(categories) {
+    return categories.slice().sort((categoryA, categoryB) => {
+      if (categoryA.priority && !categoryB.priority) {
+        return -1;
+      }
+      if (!categoryA.priority && categoryB.priority) {
+        return 1;
+      }
+      return categoryA.createdAt - categoryB.createdAt;
+    });
+  }
 
   // Delete Category
   export function deleteCategory(setCategories, setTasks, id, setSelectedCategory) {
@@ -58,7 +53,7 @@
       return updatedCategories;
     });
   
-    // Delete associated tasks
+    // Delete the associated tasks
     setTasks((currentTasks) => {
       const updatedTasks = currentTasks.filter((task) => task.categoryId !== id);
       localStorage.setItem("TASKS", JSON.stringify(updatedTasks));

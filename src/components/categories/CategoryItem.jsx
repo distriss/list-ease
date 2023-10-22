@@ -6,19 +6,16 @@ import '../../style.css'
 
 
 export default function CategoryItem({ 
-  priority, 
-  title, 
   category,
+  title,
+  priority,
   toggleCategoryPriority }) {
 
-    const [starPriority, setStarPriority] = useState(
-      priority ? 'fa-star-priority' : ''
-    );
+    const starPriority = category.priority ? 'fa-star-priority' : '';
 
-    const handleClick = () => {
-      toggleCategoryPriority(category.id, !category.priority);
-      setStarPriority(!category.priority ? 'fa-star-priority' : '');
-    }
+    const handlePriority = () => {
+      toggleCategoryPriority(category.id, !category.priority, category.id);
+    };
 
   return (
     <Stack direction="horizontal" gap={3}>
@@ -27,7 +24,7 @@ export default function CategoryItem({
         <FontAwesomeIcon 
           icon={faStar} 
           className={`icon icon-zoom fa-star ${starPriority}`}
-          onClick={handleClick}
+          onClick={handlePriority}
           />
       </div>
     </Stack>

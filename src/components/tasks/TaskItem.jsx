@@ -13,18 +13,17 @@ export default function TaskItem({
 
     const  {id, title, notes, completed, categoryId } = task;
 
+
+    const starPriority = task.priority ? 'fa-star-priority' : '';
+
+    const handlePriority = () => {
+      toggleTaskPriority(task.id, !task.priority, task.id);
+    };
+   
     const handleCheckboxChange = () => {
       toggleTaskCompleted(id, categoryId);
     };
 
-    const [starPriority, setStarPriority] = useState(
-      priority ? 'fa-star-priority' : ''
-    );
-
-    const handlePriority = () => {
-      toggleTaskPriority(task.id, !task.priority);
-      setStarPriority(!task.priority ? 'fa-star-priority' : '');
-    }
     
     return (
         <ListGroup.Item

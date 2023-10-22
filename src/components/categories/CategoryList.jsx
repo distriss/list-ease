@@ -1,27 +1,24 @@
 import React from 'react';
 import { ListGroup } from 'react-bootstrap';
 import CategoryItem from './CategoryItem';
+import { sortCategoryList } from '../../api/categories';
 
-const CategoryList = ({ categories, toggleCategoryPriority }) => {
-  const sortedListItems = categories
-    .slice()
-    .sort((a, b) => {
-      if (a.priority && !b.priority) return -1; 
-      if (!a.priority && b.priority) return 1; 
-      return a.createdAt - b.createdAt; 
-    })
-    .map((category, index) => (
-      <ListGroup.Item key={category.id} action href={`#link${category.id}`}>
-        <CategoryItem
-          key={category.id}
-          category={category}
-          title={category.title}
-          toggleCategoryPriority={toggleCategoryPriority}
-        />
-      </ListGroup.Item>
-    ));
+export default function CategoryList({ 
+  categories, 
+  toggleCategoryPriority }) {
 
-  return <ListGroup>{sortedListItems}</ListGroup>;
+    const sortedCategories = sortCategoryList(categories)
+
+    return (
+      sortedCategories.map((category) => (
+        <ListGroup.Item key={category.id} action href={`#link${category.id}`}>
+          <CategoryItem
+            key={category.id}
+            category={category}
+            title={category.title}
+            toggleCategoryPriority={toggleCategoryPriority}
+          />
+        </ListGroup.Item>
+      )));  
+     
 };
-
-export default CategoryList;
