@@ -5,7 +5,6 @@ import { faStar, faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 export default function TaskItem({ 
   task,
-  priority, 
   toggleTaskCompleted, 
   toggleTaskPriority,
   deleteTask,  

@@ -101,7 +101,7 @@ function App() {
        />
       </Stack>
       <Tab.Container 
-        id="list-group-tabs-example" defaultActiveKey="#link1">
+        id="categories-task-group" defaultActiveKey="#link1">
         <Row>
           <Col sm={5}>
             <CategoryList 
@@ -111,7 +111,7 @@ function App() {
           </Col>
           <Col sm={7}>
             <Tab.Content>
-              {categories.map((category, index) => (
+              {categories.map((category) => (
                 <Tab.Pane 
                   key={category.id} 
                   eventKey={`#link${category.id}`}

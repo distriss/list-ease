@@ -8,7 +8,6 @@ import '../../style.css'
 export default function CategoryItem({ 
   category,
   title,
-  priority,
   toggleCategoryPriority }) {
 
     const starPriority = category.priority ? 'fa-star-priority' : '';
@@ -18,15 +17,15 @@ export default function CategoryItem({
     };
 
   return (
-    <Stack direction="horizontal" gap={3}>
-      <div className="p-2"><h3 className="p-2 text-wrap text-break">{title}</h3></div>
-      <div className={`p-2 ms-auto ${starPriority === 'fa-star-priority' ? 'jump-animation' : ''}`}>     
-        <FontAwesomeIcon 
+    <div className="d-flex align-items-center">
+      <h3 className="p-4 m-2 text-wrap text-break">{title}</h3>
+      <span className={`p-2 m-2 ms-auto ${starPriority === 'fa-star-priority' ? 'jump-animation' : ''}`}>     
+         <FontAwesomeIcon 
           icon={faStar} 
           className={`icon icon-zoom fa-star ${starPriority}`}
           onClick={handlePriority}
           />
-      </div>
-    </Stack>
+      </span>
+    </div>
   );
 }

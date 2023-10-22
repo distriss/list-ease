@@ -32,6 +32,7 @@
 
   .list-group-item:focus {
     background-color: #2b3035;
+    color: white;
   }
 
   .icon {
@@ -40,7 +41,7 @@
     line-height: 50px;
     text-align: center;
     color: #2b3035;
-    filter: drop-shadow(2px 2px 3px rgba(51, 51, 51, .15)) ;
+    filter: drop-shadow(2px 2px 3px rgba(51, 51, 51, 0.075)) ;
     transition: width 0.2s ease-in-out, height 0.2s ease-in-out, filter 0.2s ease-in-out;
     -webkit-transition: width 0.2s ease-in-out, height 0.2s ease-in-out, filter 0.2s ease-in-out;
     -moz-transition: width 0.2s ease-in-out, height 0.2s ease-in-out, filter 0.2s ease-in-out;
@@ -49,7 +50,7 @@
   }
 
   .icon:hover {
-    filter: drop-shadow(3px 4px 5px rgba(51, 51, 51, .30)) ;
+    filter: drop-shadow(3px 4px 5px rgba(51, 51, 51, 0.171)) ;
   }
 
   .icon-zoom.icon:hover, .icon:active { 
@@ -68,7 +69,7 @@
  }
   
   .fa-star {
-    color: #626870; 
+    color: #bcd7fc; 
     width: 40px;
     height: 40px;
     line-height: 40px;    
