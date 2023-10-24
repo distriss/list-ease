@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ListGroup, Form } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar, faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faStar, faTrash, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 
 export default function TaskItem({ 
   task,
@@ -48,7 +48,7 @@ export default function TaskItem({
             </span>
             <span className="mx-4">
               <FontAwesomeIcon
-                icon={faPen}
+                icon={faPenToSquare}
                 className='icon icon-zoom'
                 // onClick={addNote}
                 style={{cursor: "pointer" }}

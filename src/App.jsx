@@ -109,7 +109,7 @@ function App() {
       <Tab.Container 
         id="categories-task-group" defaultActiveKey="#link1">
         <Row >
-          <Col className="glass-container" sm={5}>
+          <Col sm={5}>
             <CategoryList 
             categories={categories} 
             toggleCategoryPriority={toggleCategoryPriority}

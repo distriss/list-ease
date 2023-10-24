@@ -18,12 +18,11 @@
   h1 {
     color: white;
     margin-right: 20%;
+    font-size: 120px;
   }
 
-  
-
   .glass-container {
-    background-color: #7bced35d;
+    background-color: #d1e8ec57;
     padding: 20px;
     border: 1px solid rgba(0, 0, 0, 0.068); 
     border-radius: 10px;
@@ -38,7 +37,6 @@
   .custom-btn, .custom-dropdown, .form-field {
     height: 5rem;
   }
-
 
   .btn.btn-primary {
     background-color: var(--primary-color);
@@ -57,8 +55,8 @@
   }
 
   .list-group-item:focus {
-    background-color: var(--primary-active-color);
-    color: black;
+    background-color: #020038;
+    color: white;
   }
 
   .icon {
@@ -66,7 +64,7 @@
     height: 50px;
     line-height: 50px;
     text-align: center;
-    color: #7bced3;
+    color: #020038;
     filter: drop-shadow(2px 2px 3px rgba(51, 51, 51, 0.075)) ;
     transition: width 0.2s ease-in-out, height 0.2s ease-in-out, filter 0.2s ease-in-out;
     -webkit-transition: width 0.2s ease-in-out, height 0.2s ease-in-out, filter 0.2s ease-in-out;
@@ -88,11 +86,13 @@
     transition: transform 0.2s ease-in-out;
  }
 
- .custom-menu-btn button, .custom-menu-btn button:hover, .custom-menu-btn button:active, .custom-menu-btn button:focus {
-  background: none !important;
-  border: none !important;
-  padding: 0 !important;
- }
+  .custom-menu-btn button, .custom-menu-btn button:hover, .custom-menu-btn button:active, .custom-menu-btn button:focus {
+   background: none !important;
+   border: none !important;
+   padding: 0 !important;
+  }
+
+  
   
   .fa-star {
     color: #7bced3; 
@@ -105,7 +105,7 @@
     color: #f5d056;
   }
 
-  .fa-pen {
+  .fa-pen-to-square {
     width: 30px;
     height: 30px;
   }
@@ -116,6 +116,7 @@
   }
 
   .fa-caret {
+    color: #7bced3; 
     width: 30px;
     height: 30px;
     margin-left: 0.5rem;
@@ -141,15 +142,12 @@
   }
   
   
-  
   .dot-container {
     position: absolute;
     z-index: -1;
   }
   
- 
-  
-  
+   
   @keyframes jump {
     0%, 100% {
       transform: translateY(0) rotate(0deg);
@@ -162,11 +160,6 @@
     }
   }
   
-    
-  .h1 {
-    font-size: 80px;
-  }
-
   @media (max-width: 992px) {
     .custom-btn {
       width: 100%; 

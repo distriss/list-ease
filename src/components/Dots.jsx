@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faListUl, faMarker, faBook, faGraduationCap, faPencil,  faChildReaching, faUsers, faHeart, faComment, faCode, faWrench, faMusic, faGamepad, faPaw, faAppleWhole, faPhone, faFaceGrinWide, faFlask } from "@fortawesome/free-solid-svg-icons";
+import { faListUl, faMarker, faBook, faGraduationCap, faPencil,  faChildReaching, faUsers, faHeart, faComment, faCode, faWrench, faMusic, faGamepad, faPaw, faAppleWhole, faPhone, faFaceGrinWide, faFlask, faSeedling } from "@fortawesome/free-solid-svg-icons";
 
 const DOT_SIZE = 50;
 const GAP = 150;
@@ -11,7 +11,7 @@ const PAUSE_DURATION = 0.3;
 
 function Dot({ color, time }) {
     function getRandomIcon() {
-        const icons = [ faListUl, faMarker, faBook, faGraduationCap, faPencil, faChildReaching, faUsers, faHeart, faComment, faCode, faWrench, faMusic, faGamepad, faPaw, faAppleWhole, faPhone, faFaceGrinWide, faFlask ];
+        const icons = [ faListUl, faMarker, faBook, faGraduationCap, faPencil, faChildReaching, faUsers, faHeart, faComment, faCode, faWrench, faMusic, faGamepad, faPaw, faAppleWhole, faPhone, faFaceGrinWide, faFlask, faSeedling ];
         return icons[Math.floor(Math.random() * icons.length)];
     }
 
