@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Stack, Tab, Row, Col, Dropdown, DropdownButton, ButtonGroup } from 'react-bootstrap';
 import Header from './components/view/Header';
+import Dots from './components/Dots';
 import { NewTaskAndCategory } from './components/tasks/NewTaskAndCategory';
 import * as CategoriesAPI from './api/categories';
 import * as TasksAPI from './api/tasks';
@@ -88,7 +89,10 @@ function App() {
 
   return (
     <>
+    <div className="background-container">
+    <Dots />
     <Container className="w-80">
+      
       <Header />
       <Stack className="col-lg-12 mt-5 mb-5">        
       <NewTaskAndCategory
@@ -152,6 +156,7 @@ function App() {
         </Row>
       </Tab.Container>     
     </Container>
+    </div>
 
     </>
   );
