@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Stack, Tab, Row, Col, Dropdown, DropdownButton, ButtonGroup } from 'react-bootstrap';
 import Header from './components/view/Header';
@@ -91,8 +91,7 @@ function App() {
     <>
     <div className="background-container">
     <Dots />
-    <Container className="w-80">
-      
+    <Container className="w-80">      
       <Header />
       <Stack className="col-lg-12 mt-5 mb-5">        
       <NewTaskAndCategory

@@ -1,45 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAnchor, faCalendarDay, faHammer, faScissors, faChildReaching, faCakeCandles, faCamera, faStethoscope, faPaw, faPenClip, faFaceLaugh, faFaceLaughSquint, faFaceLaughWink, faPizzaSlice, faEarthEurope, faMusic, faPhone, faMugHot, faShoppingCart, faDog, faFrog, faCat, faCheck } from "@fortawesome/free-solid-svg-icons";
+import { faListUl, faMarker, faBook, faGraduationCap, faPencil,  faChildReaching, faUsers, faHeart, faComment, faCode, faWrench, faMusic, faGamepad, faPaw, faAppleWhole, faPhone, faFaceGrinWide, faFlask } from "@fortawesome/free-solid-svg-icons";
 
-
-const DOT_SIZE = 50; // Define the dot size here
-const GAP = 120; // Define the gap between dots here
+const DOT_SIZE = 50;
+const GAP = 150;
 const OFFSET = DOT_SIZE / 5;
 const ANIMATION_DURATION = 0.7;
 const PAUSE_DURATION = 0.3;
 
-
 function Dot({ color, time }) {
     function getRandomIcon() {
-        const icons = [
-            faAnchor,
-            faCalendarDay,
-            faHammer,
-            faScissors,
-            faChildReaching,
-            faCakeCandles,
-            faCamera,
-            faStethoscope,
-            faPaw,
-            faPenClip,
-            faFaceLaughSquint,
-            faFaceLaughWink,
-            faPizzaSlice,
-            faEarthEurope,
-            faMusic,
-            faPhone,
-            faMugHot,
-            faShoppingCart,
-            faDog,
-            faFrog,
-            faCat,
-            faCheck
-          ];
+        const icons = [ faListUl, faMarker, faBook, faGraduationCap, faPencil, faChildReaching, faUsers, faHeart, faComment, faCode, faWrench, faMusic, faGamepad, faPaw, faAppleWhole, faPhone, faFaceGrinWide, faFlask ];
         return icons[Math.floor(Math.random() * icons.length)];
     }
-
 
     const randomIcon = getRandomIcon();
 
@@ -90,41 +64,50 @@ function Dot({ color, time }) {
                     flexDirection: "column",
                     alignItems: "center",
                     justifyContent: "center",
-                }}> 
-                <FontAwesomeIcon icon={randomIcon} style={{ color, fontSize: DOT_SIZE / 2 }} /></motion.div>
-            
+                }}>
+                <FontAwesomeIcon icon={randomIcon} style={{ color, fontSize: DOT_SIZE / 2 }} />
+            </motion.div>
         </motion.div>
     );
 }
 
-export default function Dots() {
-    const [numDots, setNumDots] = useState({ horizontal: 0, vertical: 0 });
+function getRandomColor() {
+    const colors = ["#5BC0DE", "#00FFFF", "#98FB98", "#FF6B6B", "#FFD700", "#E6E6FA", "#CCCCFF", "#40E0D0"];
+    return colors[Math.floor(Math.random() * colors.length)];
+}
+ 
 
-    useEffect(() => {
-        function updateNumDots() {
-            const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
-            const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
-          
-            const numDotsHorizontally = Math.ceil(vw / (DOT_SIZE + GAP));
-            const numDotsVertically = Math.ceil(vh /  (DOT_SIZE + GAP));
-          
-            setNumDots({ horizontal: numDotsHorizontally, vertical: numDotsVertically });
-        }
+function Dots() {
+    // Initialize the number of dots based on the initial window size
+  const [numDots, setNumDots] = useState(calculateNumDots());
 
-        // Initial render
-        updateNumDots();
+  // Calculate the number of dots
+  function calculateNumDots() {
+    const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+    const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+    const numDotsHorizontally = Math.ceil(vw / (DOT_SIZE + GAP));
+    const numDotsVertically = Math.ceil(vh / (DOT_SIZE + GAP));
+    return { horizontal: numDotsHorizontally, vertical: numDotsVertically };
+  }
 
-        // Listen for window resize
-        window.addEventListener('resize', updateNumDots);
+  // Update the number of dots when the window is resized
+  function updateNumDots() {
+    const newNumDots = calculateNumDots();
+    setNumDots(newNumDots);
+  }
 
-        // Unmount Listener
-        return () => {
-          window.removeEventListener('resize', updateNumDots);
-        };
-    }, []);
+  // Add a window resize event listener
+  useEffect(() => {
+    window.addEventListener('resize', updateNumDots);
+
+    // Remove the event listener when the component unmounts
+    return () => {
+      window.removeEventListener('resize', updateNumDots);
+    };
+  }, []);
 
     return (
-        <div className="">
+        <div className="d-flex justify-content-center">
             <div className="dot-container" style={{ display: 'grid', gridTemplateColumns: `repeat(${numDots.horizontal}, 1fr)`, gap: `${GAP}px` }}>
                 {Array.from({ length: numDots.horizontal * numDots.vertical }, (_, i) => (
                     <Dot
@@ -136,29 +119,6 @@ export default function Dots() {
             </div>
         </div>
     );
-
-    function getRandomColor() {
-        const colors = ["#5BC0DE", "#00FFFF", "#98FB98", "#FF6B6B", "#FFD700", "#E6E6FA", "#CCCCFF", "#40E0D0"];
-
-        return colors[Math.floor(Math.random() * colors.length)];
-    }
-
-    function getRandomIcon() {
-        const icons = [
-            faAnchor,
-            faCalendarDay,
-            faHammer,
-            faScissors,
-            faChildReaching,
-            faCakeCandles,
-            faCamera,
-            faStethoscope,
-            faPaw,
-            faPenClip,
-            faFaceLaugh,
-        ];
-    
-        return icons[Math.floor(Math.random() * icons.length)];
-    }
-
 }
+
+export default React.memo(Dots);
