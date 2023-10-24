@@ -72,7 +72,7 @@ function Dot({ color, time }) {
 }
 
 function getRandomColor() {
-    const colors = ["#5BC0DE", "#00FFFF", "#98FB98", "#FF6B6B", "#FFD700", "#E6E6FA", "#CCCCFF", "#40E0D0"];
+    const colors = ["#85e481", "#f1dbeb", "#c1e4a5", "#f5aea2", "#7ad0e0", "#f4d07b", "#f497bf", "#f5d156", "#f5859d" ]
     return colors[Math.floor(Math.random() * colors.length)];
 }
  

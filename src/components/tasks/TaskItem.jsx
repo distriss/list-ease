@@ -7,11 +7,10 @@ export default function TaskItem({
   task,
   toggleTaskCompleted, 
   toggleTaskPriority,
-  deleteTask,  
+  deleteTask
   }) {
 
     const  {id, title, notes, completed, categoryId } = task;
-
 
     const starPriority = task.priority ? 'fa-star-priority' : '';
 
@@ -26,9 +25,9 @@ export default function TaskItem({
     
     return (
         <ListGroup.Item
-          as="li"       
+          as="li"
+          className='glass-container listgroup-item'   
         >
-          <div>
           <div className="d-flex align-items-center">          
             <Form.Check 
               className="me-2" 
@@ -68,8 +67,7 @@ export default function TaskItem({
             <div className="mx-5">
               <p>{notes}</p>
             </div>
-            )}          
-          </div>
+            )}
         </ListGroup.Item>
       );
     }

@@ -12,6 +12,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons'
 import './style.css';
 
+const colors = ["#85e481", "#f1dbeb", "#c1e4a5", "#f5aea2", "#7ad0e0", "#f4d07b", "#f497bf", "#f5d156", "#f5859d"];
+
+
 function App() {
   const [categories, setCategories] = useState([]);
   const [tasks, setTasks] = useState([]);
@@ -105,15 +108,15 @@ function App() {
       </Stack>
       <Tab.Container 
         id="categories-task-group" defaultActiveKey="#link1">
-        <Row>
-          <Col sm={5}>
+        <Row >
+          <Col className="glass-container" sm={5}>
             <CategoryList 
             categories={categories} 
             toggleCategoryPriority={toggleCategoryPriority}
             />
           </Col>
           <Col sm={7}>
-            <Tab.Content>
+            <Tab.Content  >
               {categories.map((category) => (
                 <Tab.Pane 
                   key={category.id} 
