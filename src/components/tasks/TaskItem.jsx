@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ListGroup, Form } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar, faTrash, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import { faStar, faTrash, faPenToSquare, faCheck} from '@fortawesome/free-solid-svg-icons';
 
 export default function TaskItem({ 
   task,
@@ -46,28 +46,30 @@ export default function TaskItem({
                 onClick={handlePriority}
                 />
             </span>
-            <span className="mx-4">
-              <FontAwesomeIcon
-                icon={faPenToSquare}
-                className='icon icon-zoom'
-                // onClick={addNote}
-                style={{cursor: "pointer" }}
-              />
+            <span className="ms-auto">              
+              <span className="mx-2">
+                <FontAwesomeIcon
+                  icon={faPenToSquare}
+                  className='icon icon-zoom'
+                  // onClick={addNote}
+                  style={{cursor: "pointer" }}
+                />
+              </span>
+              <span className="mx-2">
+                <FontAwesomeIcon
+                  icon={faTrash}
+                  className='icon icon-zoom'
+                  onClick={() => deleteTask(id)}
+                  style={{cursor: "pointer" }}
+                />
+              </span>
             </span>
-            <span className="ms-auto">
-              <FontAwesomeIcon
-                icon={faTrash}
-                className='icon icon-zoom text-danger'
-                onClick={() => deleteTask(id)}
-                style={{cursor: "pointer" }}
-              />
-            </span>
-            </div>
-            {notes && (
-            <div className="mx-5">
-              <p>{notes}</p>
-            </div>
-            )}
+          </div>
+          {notes && (
+          <div className="mx-5">
+            <p>{notes}</p>
+          </div>
+          )}
         </ListGroup.Item>
       );
     }

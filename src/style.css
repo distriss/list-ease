@@ -18,8 +18,48 @@
   h1 {
     color: white;
     margin-right: 20%;
-    font-size: 120px;
+    font-size: 10rem;
   }
+
+  .form-field {
+    background-color: #7bced333;
+    border: 1px solid rgba(0, 0, 0, 0.068);
+    border-radius: 10px;
+    box-shadow: inset 0 0 10px rgba(102, 102, 102, 0.137);
+    backdrop-filter: blur(5px);
+  }
+
+  .form-field:focus {
+    background-color: #7bced3af;
+    border: 1px solid rgba(0, 0, 0, 0.068);
+    box-shadow: inset 0 0 10px rgba(189, 189, 189, 0.479);
+  }
+
+  .list-group-item .form-check-input[type=checkbox] {
+    background-color: #7bced333;
+    color:#020038;
+    border: 1px solid rgba(0, 0, 0, 0.068);
+    margin: 0;
+    border-radius: 50%;
+    box-shadow: inset 0 0 10px rgba(102, 102, 102, 0.137);
+    backdrop-filter: blur(5px);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+  }
+  
+  .list-group-item .form-check-input[type=checkbox]:hover {
+    background-color: #7bced3af;
+  }
+
+  .list-group-item .form-check-input[type=checkbox]:checked {
+    background-color: #7bced3af;
+  }
+
+  .task-completed {    
+    text-decoration: line-through;
+  }
+ 
 
   .glass-container {
     background-color: #d1e8ec57;
@@ -65,6 +105,7 @@
     line-height: 50px;
     text-align: center;
     color: #020038;
+    cursor: pointer;
     filter: drop-shadow(2px 2px 3px rgba(51, 51, 51, 0.075)) ;
     transition: width 0.2s ease-in-out, height 0.2s ease-in-out, filter 0.2s ease-in-out;
     -webkit-transition: width 0.2s ease-in-out, height 0.2s ease-in-out, filter 0.2s ease-in-out;
@@ -95,7 +136,7 @@
   
   
   .fa-star {
-    color: #7bced3; 
+    color: #7bced3;
     width: 35px;
     height: 35px;
     line-height: 40px;    
@@ -111,6 +152,7 @@
   }
 
   .fa-trash {
+    color: #ff7e70;
     width: 27px;
     height: 27px;
   }
