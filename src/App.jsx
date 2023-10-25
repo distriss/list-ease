@@ -94,7 +94,7 @@ function App() {
     <>
     <div className="background-container">
     <Dots />
-    <Container className="w-80">      
+    <Container className="w-100" style={{ overflow: 'auto', maxHeight: '100vh' }} >      
       <Header />
       <Stack className="col-lg-12 mt-5 mb-5">        
       <NewTaskAndCategory
@@ -107,7 +107,7 @@ function App() {
        />
       </Stack>
       <Tab.Container 
-        id="categories-task-group" defaultActiveKey="#link1">
+        id="categories-task-group" defaultActiveKey="#link1" >
         <Row >
           <Col sm={5}>
             <CategoryList 
