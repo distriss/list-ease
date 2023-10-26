@@ -21,7 +21,11 @@
     z-index: -1;
   }
 
-  
+  /* .tab-container {
+    width: 80%;
+    margin: 0 auto;
+  }
+   */
   .glass-container {
     background-color: #d1e8ec57;
     padding: 20px;
@@ -34,10 +38,11 @@
   .header {
     background-color: #020038;
     color: white;
-    margin-top: 70px;
+    height: 350px;
+    margin: 70px 20% 30px 20% ;
     padding: 20px;
     border: 1px solid rgba(0, 0, 0, 0.068); 
-    border-radius: 10px;
+    border-radius: 0.5rem;
     box-shadow: 0 0 20px rgba(78, 78, 78, 0.192);
   }
 
@@ -195,8 +200,7 @@
     animation-iteration-count: 1;
     transform-origin: center;
   }
-
-   
+  
    
   @keyframes jump {
     0%, 100% {
@@ -209,7 +213,8 @@
       transform: translateY(-1px) rotate(-5deg);
     }
   }
-  
+ 
+
   @media (max-width: 992px) {
     .custom-btn {
       width: 100%; 

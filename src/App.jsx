@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Stack, Tab, Row, Col, Dropdown, DropdownButton, ButtonGroup } from 'react-bootstrap';
+import { Container, Tab, Row, Col, Dropdown, DropdownButton, ButtonGroup } from 'react-bootstrap';
 import Header from './components/view/Header';
 import Dots from './components/Dots';
 import { NewTaskAndCategory } from './components/tasks/NewTaskAndCategory';
@@ -93,71 +93,73 @@ function App() {
   return (
     <>
     <div className="background-container">
-    <Dots />
-    <Container className="w-100" style={{ overflow: 'auto', maxHeight: '100vh' }} >      
-      <Header />
-      <Stack className="col-lg-12 mt-5 mb-5">        
-      <NewTaskAndCategory
-        onSubmit={addTask}
-        categories={categories}
-        addCategory={addCategory}
-        setCategories={setCategories}
-        selectedCategory={selectedCategory}
-        setSelectedCategory={setSelectedCategory}
-       />
-      </Stack>
-      <Tab.Container 
-        id="categories-task-group" defaultActiveKey="#link1" >
-        <Row >
-          <Col sm={5}>
-            <CategoryList 
-            categories={categories} 
-            toggleCategoryPriority={toggleCategoryPriority}
-            />
-          </Col>
-          <Col sm={7}>
-            <Tab.Content  >
-              {categories.map((category) => (
-                <Tab.Pane 
-                  key={category.id} 
-                  eventKey={`#link${category.id}`}
-                  className="px-0 mx-auto"
-                  >                  
-                  <div className="d-flex justify-content-between align-items-start mb-3">
-                    <h3 className="p-0 mx-4">{category.title}</h3>
-                    <DropdownButton
-                      as={ButtonGroup}
-                      key="end"
-                      id={`dropdown-button-drop-end`}
-                      focusFirstItemOnShow={false}
-                      drop="end"
-                      variant="primary"
-                      title={<FontAwesomeIcon icon={faEllipsisV} className="icon icon-zoom"/>}
-                      className="custom-menu-btn">         
-                      <Dropdown.Item eventKey="1">Set Priority</Dropdown.Item>
-                      <Dropdown.Item eventKey="2">Clear Completed</Dropdown.Item>
-                      <Dropdown.Divider />
-                      <Dropdown.Item 
-                        eventKey="3"
-                        onClick={() => deleteCategory(category.id)}
-                        >
-                          Delete Category</Dropdown.Item>
-                    </DropdownButton>
-                  </div>
-                  <TaskList
-                    tasks={tasks}
-                    category={category}
-                    toggleTaskCompleted={toggleTaskCompleted}
-                    toggleTaskPriority={toggleTaskPriority}
-                    deleteTask={deleteTask}
-                  />
-                </Tab.Pane>
-              ))}
-            </Tab.Content>
-          </Col>
-        </Row>
-      </Tab.Container>     
-    </Container>
+      <Dots />
+      <div className="flex-d" style={{ overflow: 'auto', maxHeight: '100vh' }} >      
+        <Header />
+        <Container className="col-lg-7 mt-5 mb-5">        
+          <NewTaskAndCategory
+            onSubmit={addTask}
+            categories={categories}
+            addCategory={addCategory}
+            setCategories={setCategories}
+            selectedCategory={selectedCategory}
+            setSelectedCategory={setSelectedCategory}
+           />
+        </Container>
+        <Container className="col-lg-7 tab-container">
+        <Tab.Container 
+          id="categories-task-group" defaultActiveKey="#link1" >
+          <Row >
+            <Col xs={12} xxl={5} className="mb-5">
+              <CategoryList 
+              categories={categories} 
+              toggleCategoryPriority={toggleCategoryPriority}
+              />
+            </Col>
+            <Col xs={12} xxl={7} >
+              <Tab.Content  >
+                {categories.map((category) => (
+                  <Tab.Pane 
+                    key={category.id} 
+                    eventKey={`#link${category.id}`}
+                    className=""
+                    >                  
+                    <Container className="d-flex justify-content-between align-items-start mb-3">
+                      <h3 className="p-0 mx-4">{category.title}</h3>
+                      <DropdownButton
+                        as={ButtonGroup}
+                        key="end"
+                        id={`dropdown-button-drop-end`}
+                        focusFirstItemOnShow={false}
+                        drop="end"
+                        variant="primary"
+                        title={<FontAwesomeIcon icon={faEllipsisV} className="icon icon-zoom"/>}
+                        className="custom-menu-btn">         
+                        <Dropdown.Item eventKey="1">Set Priority</Dropdown.Item>
+                        <Dropdown.Item eventKey="2">Clear Completed</Dropdown.Item>
+                        <Dropdown.Divider />
+                        <Dropdown.Item 
+                          eventKey="3"
+                          onClick={() => deleteCategory(category.id)}
+                          >
+                            Delete Category</Dropdown.Item>
+                      </DropdownButton>
+                    </Container>
+                    <TaskList
+                      tasks={tasks}
+                      category={category}
+                      toggleTaskCompleted={toggleTaskCompleted}
+                      toggleTaskPriority={toggleTaskPriority}
+                      deleteTask={deleteTask}
+                    />
+                  </Tab.Pane>
+                ))}
+              </Tab.Content>
+            </Col>
+          </Row>
+        </Tab.Container>
+        </Container>     
+      </div>
     </div>
 
     </>
