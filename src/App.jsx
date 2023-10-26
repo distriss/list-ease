@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Tab, Row, Col, Dropdown, DropdownButton, ButtonGroup } from 'react-bootstrap';
 import Header from './components/view/Header';
@@ -20,6 +20,7 @@ function App() {
   const [tasks, setTasks] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [priority, setPriority] = useState([]);
+  
  
   useEffect(() => {
     const localCategories = localStorage.getItem('CATEGORIES');
@@ -94,9 +95,9 @@ function App() {
     <>
     <div className="background-container">
       <Dots />
-      <div className="flex-d" style={{ overflow: 'auto', maxHeight: '100vh' }} >      
+      <div className="flex-d" style={{ overflowY: 'auto', maxHeight: '100vh' }} >      
         <Header />
-        <Container className="col-lg-7 mt-5 mb-5">        
+        <Container >        
           <NewTaskAndCategory
             onSubmit={addTask}
             categories={categories}
@@ -106,23 +107,23 @@ function App() {
             setSelectedCategory={setSelectedCategory}
            />
         </Container>
-        <Container className="col-lg-7 tab-container">
+        <Container className="tab-container">
         <Tab.Container 
           id="categories-task-group" defaultActiveKey="#link1" >
           <Row >
-            <Col xs={12} xxl={5} className="mb-5">
+            <Col xs={12} lg={4} className="mb-5 glass-container">
               <CategoryList 
               categories={categories} 
               toggleCategoryPriority={toggleCategoryPriority}
               />
             </Col>
-            <Col xs={12} xxl={7} >
+            <Col xs={12} lg={8} >
               <Tab.Content  >
                 {categories.map((category) => (
                   <Tab.Pane 
                     key={category.id} 
                     eventKey={`#link${category.id}`}
-                    className=""
+                    className="mb-5"
                     >                  
                     <Container className="d-flex justify-content-between align-items-start mb-3">
                       <h3 className="p-0 mx-4">{category.title}</h3>

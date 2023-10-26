@@ -1,7 +1,7 @@
 import { React, useState } from 'react';
 import { Stack } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar, } from '@fortawesome/free-solid-svg-icons'
+import { faStar } from '@fortawesome/free-solid-svg-icons'
 import '../../style.css'
 
 
