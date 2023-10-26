@@ -221,6 +221,7 @@
     h1 {
       font-size: 4rem;
     }
+   
   }
   
   @media (min-width: 768px) {
@@ -230,9 +231,7 @@
   }
   
   @media (min-width: 992px) { 
-     .custom-btn {
-       width: 100%; 
-     }
+     
 
        h1 {
        font-size: 6rem;
