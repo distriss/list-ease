@@ -16,7 +16,6 @@ export default function TaskList({
 
     return (
       <ListGroup >
-      {tasks === 0 && <ListGroup.Item>This Category has no tasks</ListGroup.Item>}
       {sortedTasks.map((task) => (
         <TaskItem
           task={task} 

@@ -107,7 +107,7 @@ function App() {
             setSelectedCategory={setSelectedCategory}
            />
         </Container>
-        <Container className="tab-container">
+        <Container className="tab-container mt-3">
         <Tab.Container 
           id="categories-task-group" defaultActiveKey="#link1" >
           <Row >
@@ -123,10 +123,10 @@ function App() {
                   <Tab.Pane 
                     key={category.id} 
                     eventKey={`#link${category.id}`}
-                    className="mb-5"
+                    className="mb-5 mt-3"
                     >                  
-                    <Container className="d-flex justify-content-between align-items-start mb-3">
-                      <h3 className="p-0 mx-4">{category.title}</h3>
+                    <Container className="d-flex justify-content-between align-items-center mb-3 glass-container">
+                      <h2 className="p-0 mx-4">{category.title}</h2>
                       <DropdownButton
                         as={ButtonGroup}
                         key="end"
@@ -135,8 +135,7 @@ function App() {
                         drop="end"
                         variant="primary"
                         title={<FontAwesomeIcon icon={faEllipsisV} className="icon icon-zoom"/>}
-                        className="custom-menu-btn">         
-                        <Dropdown.Item eventKey="1">Set Priority</Dropdown.Item>
+                        className="custom-menu-btn"> <Dropdown.Item eventKey="1">Set Priority</Dropdown.Item>
                         <Dropdown.Item eventKey="2">Clear Completed</Dropdown.Item>
                         <Dropdown.Divider />
                         <Dropdown.Item 
