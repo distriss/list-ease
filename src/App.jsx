@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Stack, Tab, Row, Col, Dropdown, DropdownButton, ButtonGroup } from 'react-bootstrap';
+import { Container, Tab, Row, Col, Dropdown, DropdownButton, ButtonGroup } from 'react-bootstrap';
 import Header from './components/view/Header';
 import Dots from './components/Dots';
 import { NewTaskAndCategory } from './components/tasks/NewTaskAndCategory';
@@ -20,6 +20,7 @@ function App() {
   const [tasks, setTasks] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [priority, setPriority] = useState([]);
+  
  
   useEffect(() => {
     const localCategories = localStorage.getItem('CATEGORIES');
@@ -93,71 +94,72 @@ function App() {
   return (
     <>
     <div className="background-container">
-    <Dots />
-    <Container className="w-100" style={{ overflow: 'auto', maxHeight: '100vh' }} >      
-      <Header />
-      <Stack className="col-lg-12 mt-5 mb-5">        
-      <NewTaskAndCategory
-        onSubmit={addTask}
-        categories={categories}
-        addCategory={addCategory}
-        setCategories={setCategories}
-        selectedCategory={selectedCategory}
-        setSelectedCategory={setSelectedCategory}
-       />
-      </Stack>
-      <Tab.Container 
-        id="categories-task-group" defaultActiveKey="#link1" >
-        <Row >
-          <Col sm={5}>
-            <CategoryList 
-            categories={categories} 
-            toggleCategoryPriority={toggleCategoryPriority}
-            />
-          </Col>
-          <Col sm={7}>
-            <Tab.Content  >
-              {categories.map((category) => (
-                <Tab.Pane 
-                  key={category.id} 
-                  eventKey={`#link${category.id}`}
-                  className="px-0 mx-auto"
-                  >                  
-                  <div className="d-flex justify-content-between align-items-start mb-3">
-                    <h3 className="p-0 mx-4">{category.title}</h3>
-                    <DropdownButton
-                      as={ButtonGroup}
-                      key="end"
-                      id={`dropdown-button-drop-end`}
-                      focusFirstItemOnShow={false}
-                      drop="end"
-                      variant="primary"
-                      title={<FontAwesomeIcon icon={faEllipsisV} className="icon icon-zoom"/>}
-                      className="custom-menu-btn">         
-                      <Dropdown.Item eventKey="1">Set Priority</Dropdown.Item>
-                      <Dropdown.Item eventKey="2">Clear Completed</Dropdown.Item>
-                      <Dropdown.Divider />
-                      <Dropdown.Item 
-                        eventKey="3"
-                        onClick={() => deleteCategory(category.id)}
-                        >
-                          Delete Category</Dropdown.Item>
-                    </DropdownButton>
-                  </div>
-                  <TaskList
-                    tasks={tasks}
-                    category={category}
-                    toggleTaskCompleted={toggleTaskCompleted}
-                    toggleTaskPriority={toggleTaskPriority}
-                    deleteTask={deleteTask}
-                  />
-                </Tab.Pane>
-              ))}
-            </Tab.Content>
-          </Col>
-        </Row>
-      </Tab.Container>     
-    </Container>
+      <Dots />
+      <div className="flex-d" style={{ overflowY: 'auto', maxHeight: '100vh' }} >      
+        <Header />
+        <Container >        
+          <NewTaskAndCategory
+            onSubmit={addTask}
+            categories={categories}
+            addCategory={addCategory}
+            setCategories={setCategories}
+            selectedCategory={selectedCategory}
+            setSelectedCategory={setSelectedCategory}
+           />
+        </Container>
+        <Container className="tab-container mt-3">
+        <Tab.Container 
+          id="categories-task-group" defaultActiveKey="#link1" >
+          <Row >
+            <Col xs={12} lg={4} className="mb-5 glass-container">
+              <CategoryList 
+              categories={categories} 
+              toggleCategoryPriority={toggleCategoryPriority}
+              />
+            </Col>
+            <Col xs={12} lg={8} >
+              <Tab.Content  >
+                {categories.map((category) => (
+                  <Tab.Pane 
+                    key={category.id} 
+                    eventKey={`#link${category.id}`}
+                    className="mb-5 mt-3"
+                    >                  
+                    <Container className="d-flex justify-content-between align-items-center mb-3 glass-container">
+                      <h2 className="p-0 mx-4">{category.title}</h2>
+                      <DropdownButton
+                        as={ButtonGroup}
+                        key="end"
+                        id={`dropdown-button-drop-end`}
+                        focusFirstItemOnShow={false}
+                        drop="end"
+                        variant="primary"
+                        title={<FontAwesomeIcon icon={faEllipsisV} className="icon icon-zoom"/>}
+                        className="custom-menu-btn"> <Dropdown.Item eventKey="1">Set Priority</Dropdown.Item>
+                        <Dropdown.Item eventKey="2">Clear Completed</Dropdown.Item>
+                        <Dropdown.Divider />
+                        <Dropdown.Item 
+                          eventKey="3"
+                          onClick={() => deleteCategory(category.id)}
+                          >
+                            Delete Category</Dropdown.Item>
+                      </DropdownButton>
+                    </Container>
+                    <TaskList
+                      tasks={tasks}
+                      category={category}
+                      toggleTaskCompleted={toggleTaskCompleted}
+                      toggleTaskPriority={toggleTaskPriority}
+                      deleteTask={deleteTask}
+                    />
+                  </Tab.Pane>
+                ))}
+              </Tab.Content>
+            </Col>
+          </Row>
+        </Tab.Container>
+        </Container>     
+      </div>
     </div>
 
     </>

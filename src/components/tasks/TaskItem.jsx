@@ -28,7 +28,7 @@ export default function TaskItem({
           as="li"
           className='glass-container listgroup-item'   
         >
-          <div className="d-flex align-items-center">          
+          <div className="d-flex align-items-center justify">          
             <Form.Check 
               className="me-2" 
               aria-label={title} 
@@ -38,7 +38,7 @@ export default function TaskItem({
               checked={completed}
               onChange={handleCheckboxChange}
               />
-            <h5 className="mx-4">{title}</h5>
+            <h4 className="mx-4">{title}</h4>
             <span className={`p-2 align-items-start ${starPriority === 'fa-star-priority' ? 'jump-animation' : ''}`}>     
               <FontAwesomeIcon 
                 icon={faStar} 

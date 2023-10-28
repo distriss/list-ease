@@ -1,8 +1,21 @@
+@font-face {
+  font-family: Comfortaa-Light;
+  src: url(./components/view/assets/fonts/Comfortaa-Light.ttf)
+}
+@font-face {
+  font-family: AlumniSans;
+  src: url(./components/view/assets/fonts/AlumniSansCollegiateOne-Regular.ttf)
+}
 
 :root {
     --primary-color: #020038;
     --primary-hover-color: #7bced3;
     --primary-active-color: #7bced3;
+    --gradient-color: linear-gradient(30deg, #7bced3 20%, #f5d156,#e98197, #85e481, #c1e4a5);
+  }
+
+  body {
+    font-family: Comfortaa-Light, Georgia, 'Times New Roman', Times, serif;
   }
 
   .background-container {
@@ -34,17 +47,29 @@
   .header {
     background-color: #020038;
     color: white;
-    margin-top: 70px;
+    height: 350px;
     padding: 20px;
     border: 1px solid rgba(0, 0, 0, 0.068); 
-    border-radius: 10px;
+    border-radius: 0.5rem;
     box-shadow: 0 0 20px rgba(78, 78, 78, 0.192);
+ 
   }
-
+  
   h1 {
     color: white;
-    margin-right: 20%;
-    font-size: 100px;
+    font-size: 8em;
+    font-family: AlumniSans, Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+    letter-spacing: 0.5rem;
+    background: var(--gradient-color);
+    background-clip: initial;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-blend-mode: multiply; 
+  }
+
+  h2, h3, h4, h5 {
+    margin: 0;
   }
 
   .form-field {
@@ -98,6 +123,7 @@
 
   .btn.btn-primary {
     background-color: var(--primary-color);
+    
   }
 
   .btn.btn-primary:active, .btn.btn-primary:active:focus, .btn.btn-primary:focus {
@@ -118,14 +144,14 @@
     display:none !important;
   }
 
-  .list-group-item:focus {
+  .list-group-item:focus, .list-group-item:focus .fa-arrow-down {
     background-color: #020038;
     color: white;
   }
 
   .icon {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     line-height: 50px;
     text-align: center;
     color: #020038;
@@ -156,7 +182,6 @@
    border: none !important;
    padding: 0 !important;
   }
-
   
   
   .fa-star {
@@ -188,6 +213,7 @@
     margin-left: 0.5rem;
   }
 
+  
   .jump-animation {
     animation-name: jump;
     animation-duration: 0.3s;
@@ -195,8 +221,7 @@
     animation-iteration-count: 1;
     transform-origin: center;
   }
-
-   
+  
    
   @keyframes jump {
     0%, 100% {
@@ -209,9 +234,33 @@
       transform: translateY(-1px) rotate(-5deg);
     }
   }
-  
-  @media (max-width: 992px) {
-    .custom-btn {
-      width: 100%; 
+ 
+
+  @media (min-width: 220px) {
+    h1 {
+      font-size: 4rem;
     }
   }
+
+  @media (min-width: 576px) {
+    h1 {
+      font-size: 5rem;
+    }
+   
+  }
+  
+  @media (min-width: 768px) {
+    h1 {
+      font-size: 6rem;
+    }
+  }
+  
+  @media (min-width: 992px) { 
+     
+
+       h1 {
+       font-size: 8rem;
+     }  
+  }
+  
+ 

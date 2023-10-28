@@ -1,17 +1,23 @@
 import React from 'react';
-import { Container, Nav, Navbar, Image} from 'react-bootstrap';
+import { Container, Col, Image} from 'react-bootstrap';
 
 export default function Header() {
   return (
-    <header className="header d-flex justify-content-center align-items-center">
+    <Col xs={10} sm={10} md={10} lg={10} xl={9} xxl={8} className='mx-auto m-5 mx-4'>
+    <header className="header text-white py-4">
+    <Container >
+    <div className="d-flex flex-column align-items-center justify-content-center text-center">
           <Image
+            src="src/components/view/assets/img/listease-logo.webp"
             alt="ListEase Logo"
-            src="src\components\view\assets\img\listease-logo.webp"
-            width={225}
-            height={225}
-            className='logo'
+            width={150}
+            height={150}
+            className="mb-3"
           />
-          <h1>ListEase</h1>          
-    </header>
+          <h1 className="mb-0">ListEase</h1>
+        </div>
+    </Container>
+  </header>
+  </Col>
   );
 };
