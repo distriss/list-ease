@@ -29,6 +29,8 @@ The app could be further optimized by implementing the following features and fu
 
 - Task Notes: Enable users to add additional notes and details to their tasks for better organization and clarity.
 
+- Track Daily Progress, Monthly Score and Achievement Feature
+
 - Reminders: Implement reminders and notifications to help users stay on top of their tasks and deadlines.
 
 - Due Dates: Allow users to set due dates for their tasks, helping them prioritize and manage their responsibilities effectively.
