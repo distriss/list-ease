@@ -21,7 +21,6 @@ export default function TaskItem({
     const handleCheckboxChange = () => {
       toggleTaskCompleted(id, categoryId);
     };
-
     
     return (
         <ListGroup.Item
@@ -38,7 +37,7 @@ export default function TaskItem({
               checked={completed}
               onChange={handleCheckboxChange}
               />
-            <h4 className="mx-4">{title}</h4>
+            <h4 className={`mx-4 ${completed ? 'task-completed' : ''}`}>{title}</h4>
             <span className={`p-2 align-items-start ${starPriority === 'fa-star-priority' ? 'jump-animation' : ''}`}>     
               <FontAwesomeIcon 
                 icon={faStar} 

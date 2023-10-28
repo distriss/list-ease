@@ -68,6 +68,8 @@ function App() {
     }
   }
 
+  // Clear Completed
+
   
   // Tasks functions
   // Add Task
@@ -123,9 +125,9 @@ function App() {
                   <Tab.Pane 
                     key={category.id} 
                     eventKey={`#link${category.id}`}
-                    className="mb-5 mt-3"
+                    className="mb-5 mt-3 glass-container"
                     >                  
-                    <Container className="d-flex justify-content-between align-items-center mb-3 glass-container">
+                    <Container className="d-flex justify-content-between align-items-center mb-3 ">
                       <h2 className="p-0 mx-4">{category.title}</h2>
                       <DropdownButton
                         as={ButtonGroup}

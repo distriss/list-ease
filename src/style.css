@@ -107,12 +107,13 @@
     background-color: #7bced3af;
   }
 
-  .task-completed {    
+  .task-completed {  
+    color: #212529be;  
     text-decoration: line-through;
+    text-decoration-color:#7bced3;
+    
   }
  
-
-
   .no-wrap-text {
     white-space: nowrap;
   }
