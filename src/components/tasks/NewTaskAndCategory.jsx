@@ -127,7 +127,6 @@ export function NewTaskAndCategory({
             </Alert>
           )}
            <Dropdown.Toggle 
-                variant="primary" 
                 id="category"
                 size="lg"
                 className="custom-dropdown d-flex  align-items-center px-5">
@@ -177,8 +176,8 @@ export function NewTaskAndCategory({
               onChange={(e) => setNewTask(e.target.value)}
               id="newTask"
               className="form-field m-lg-3 mb-3 mb-md-3" />
-            <Button variant="primary" size="lg" className="m-lg-3 mb-3 mb-md-3 no-wrap-text custom-btn px-5" type="submit">Add Task</Button>
-                     </>
+            <Button size="lg" className="m-lg-3 mb-3 mb-md-3 no-wrap-text custom-btn px-5" type="submit">Add Task</Button>
+          </>
         )}
         </Col>
       </Row>
