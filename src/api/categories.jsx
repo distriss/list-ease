@@ -63,4 +63,12 @@
     setSelectedCategory(null);
 
   }
-  
+
+  // Clear Completed Tasks in A Category
+  export function clearCompleted(setTasks, id) {
+    setTasks((currentTasks) => {
+      const updatedTasks = currentTasks.filter((task) => task.categoryId !== id || !task.completed);
+      localStorage.setItem("TASKS", JSON.stringify(updatedTasks));
+      return updatedTasks;
+    });
+  }
