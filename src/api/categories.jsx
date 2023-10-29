@@ -44,6 +44,19 @@
     });
   }
 
+  // Edit Title
+  export function updateCategoryTitle(setCategories, categories, id, editedTitle)  {
+    const updatedCategories = categories.map((category) => {
+      if (category.id === id) {
+        return { ...category, title: editedTitle };
+      } else {
+        return category;
+      }
+    });
+    setCategories(updatedCategories);
+
+  }
+
   // Delete Category
   export function deleteCategory(setCategories, setTasks, id, setSelectedCategory) {
 

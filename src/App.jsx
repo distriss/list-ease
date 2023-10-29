@@ -20,6 +20,8 @@ function App() {
   const [tasks, setTasks] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [priority, setPriority] = useState([]);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedTitle, setEditedTitle] = useState('');
   
  
   useEffect(() => {
@@ -50,7 +52,12 @@ function App() {
   
   // Category Priority
   function toggleCategoryPriority(id, priority, categoryId) {
-    CategoriesAPI.toggleCategoryPriority(setCategories, categories, id, priority, categoryId)
+    CategoriesAPI.toggleCategoryPriority(setCategories, categories, id, priority, categoryId);
+  }
+
+  // Edit Category Title 
+  function updateCategoryTitle(setCategories, categories, id, editedTitle) {
+    CategoriesAPI.updateCategoryTitle(setCategories, categories, id, editedTitle);
   }
 
   // Delete Category with Associated Tasks
@@ -67,7 +74,6 @@ function App() {
       setSelectedCategory(null); 
     }
   }
-
 
   // Clear Completed Tasks in a Category
   function clearCompleted( setTasks, id) {
@@ -132,7 +138,28 @@ function App() {
                     className="mb-5 mt-3 glass-container"
                     >                  
                     <Container className="d-flex justify-content-between align-items-center mb-3 ">
-                      <h2 className="p-0 mx-4">{category.title}</h2>
+                      {
+                        isEditing ? (
+                          <div>
+                          <input
+                            type="text"
+                            value={editedTitle}
+                            onChange={(e) => setEditedTitle(e.target.value)}
+                          />
+                          <button
+                            onClick={() => {
+                              setIsEditing(false);
+                              // Update the category title with the new value
+                              updateCategoryTitle(setCategories, categories, category.id, editedTitle);
+                            }}
+                          >
+                            Save
+                          </button>
+                        </div>
+                        ) : (
+                          <h2 className="p-0 mx-4">{category.title}</h2>
+                        )
+                      }
                       <DropdownButton
                         as={ButtonGroup}
                         key="end"
@@ -142,8 +169,14 @@ function App() {
                         variant="primary"
                         title={<FontAwesomeIcon icon={faEllipsisV} className="icon icon-zoom"/>}
                         className="custom-menu-btn"> 
-                          <Dropdown.Item eventKey="1">
-                            Edit Category
+                          <Dropdown.Item 
+                            eventKey="1"
+                            onClick={() => {
+                              setIsEditing(true);
+                              setEditedTitle(category.title);
+                            }}
+                            >
+                              Edit Category
                           </Dropdown.Item>
                           <Dropdown.Item 
                             eventKey="2"
