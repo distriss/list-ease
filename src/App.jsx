@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Tab, Row, Col, Dropdown, DropdownButton, ButtonGroup } from 'react-bootstrap';
+import { Container, Tab, Row, Col, Dropdown, DropdownButton, ButtonGroup, Form,Button } from 'react-bootstrap';
 import Header from './components/view/Header';
 import Dots from './components/Dots';
 import { NewTaskAndCategory } from './components/tasks/NewTaskAndCategory';
@@ -140,22 +140,28 @@ function App() {
                     <Container className="d-flex justify-content-between align-items-center mb-3 ">
                       {
                         isEditing ? (
-                          <div>
-                          <input
+                          <>
+                          <Form.Label 
+                            htmlFor="category" 
+                            visuallyHidden
+                            >
+                            Edit Category Title
+                          </Form.Label>
+                          <Form.Control
                             type="text"
                             value={editedTitle}
                             onChange={(e) => setEditedTitle(e.target.value)}
+                            className="form-field form-field-xs m-sm-2"
                           />
-                          <button
+                          <Button 
+                            size="lg" 
+                            className="m-sm-2 wrap-text custom-btn custom-btn-xs px-4" 
                             onClick={() => {
                               setIsEditing(false);
                               // Update the category title with the new value
                               updateCategoryTitle(setCategories, categories, category.id, editedTitle);
-                            }}
-                          >
-                            Save
-                          </button>
-                        </div>
+                            }}>Save</Button>
+                        </>
                         ) : (
                           <h2 className="p-0 mx-4">{category.title}</h2>
                         )
