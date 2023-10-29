@@ -68,7 +68,11 @@ function App() {
     }
   }
 
-  // Clear Completed
+
+  // Clear Completed Tasks in a Category
+  function clearCompleted( setTasks, id) {
+    CategoriesAPI.clearCompleted( setTasks, id);
+  }
 
   
   // Tasks functions
@@ -137,14 +141,23 @@ function App() {
                         drop="end"
                         variant="primary"
                         title={<FontAwesomeIcon icon={faEllipsisV} className="icon icon-zoom"/>}
-                        className="custom-menu-btn"> <Dropdown.Item eventKey="1">Set Priority</Dropdown.Item>
-                        <Dropdown.Item eventKey="2">Clear Completed</Dropdown.Item>
+                        className="custom-menu-btn"> 
+                          <Dropdown.Item eventKey="1">
+                            Edit Category
+                          </Dropdown.Item>
+                          <Dropdown.Item 
+                            eventKey="2"
+                            onClick={() => clearCompleted(setTasks, category.id)}
+                            >
+                              Clear Completed
+                          </Dropdown.Item>
                         <Dropdown.Divider />
-                        <Dropdown.Item 
-                          eventKey="3"
-                          onClick={() => deleteCategory(category.id)}
-                          >
-                            Delete Category</Dropdown.Item>
+                          <Dropdown.Item 
+                            eventKey="3"
+                            onClick={() => deleteCategory(category.id)}
+                            >
+                              Delete Category
+                          </Dropdown.Item>
                       </DropdownButton>
                     </Container>
                     <TaskList
