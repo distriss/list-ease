@@ -9,12 +9,12 @@ export default function Header() {
     <div className="d-flex flex-column align-items-center justify-content-center text-center">
           <Image
             src="/assets/img/listease-logo.webp"
-            alt="ListEase Logo"
+            alt="ListEaser Logo"
             width={150}
             height={150}
             className="mb-3"
           />
-          <h1 className="mb-0 text-wrap text-break">ListEase</h1>
+          <h1 className="mb-0 text-wrap text-break">ListEaser</h1>
         </div>
     </Container>
   </header>
