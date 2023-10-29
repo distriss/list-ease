@@ -8,7 +8,7 @@ export default function Header() {
     <Container >
     <div className="d-flex flex-column align-items-center justify-content-center text-center">
           <Image
-            src="src/components/view/assets/img/listease-logo.webp"
+            src="/src/components/view/assets/img/listease-logo.webp"
             alt="ListEase Logo"
             width={150}
             height={150}
