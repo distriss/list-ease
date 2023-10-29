@@ -14,7 +14,7 @@ export default function Header() {
             height={150}
             className="mb-3"
           />
-          <h1 className="mb-0 text-wrap text-break">ListEaser</h1>
+          <h1 className="mb-0 text-wrap text-break">ListEase</h1>
         </div>
     </Container>
   </header>
