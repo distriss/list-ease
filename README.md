@@ -41,6 +41,10 @@ The app could be further optimized by implementing the following features and fu
 
 - Error Codes: Implement error codes and clear error messages to enhance the user experience when handling unexpected situations or input errors.
 
+- Improve Accessibility
+
+- Tidy up codebase
+
 These optimizations would enhance List-Ease and provide users with a more comprehensive and efficient task management solution.
 
 

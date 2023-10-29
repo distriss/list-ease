@@ -1,5 +1,5 @@
 import { React, useState } from 'react';
-import { Stack } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import '../../style.css'
@@ -17,7 +17,7 @@ export default function CategoryItem({
     };
 
   return (
-    <div className="d-flex align-items-center">
+    <Container className="d-flex align-items-center">
       <h3 className="p-4 m-2 text-wrap text-break">{title}</h3>
       <span className={`p-2 m-2 ms-auto ${starPriority === 'fa-star-priority' ? 'jump-animation' : ''}`}>     
          <FontAwesomeIcon 
@@ -26,6 +26,6 @@ export default function CategoryItem({
           onClick={handlePriority}
           />
       </span>
-    </div>
+    </Container>
   );
 }

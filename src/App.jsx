@@ -123,7 +123,7 @@ function App() {
         <Tab.Container 
           id="categories-task-group" defaultActiveKey="#link1" >
           <Row >
-            <Col xs={12} lg={4} className="mb-5 glass-container">
+            <Col xs={12} lg={4} className={`mb-5 ${categories.length ? ' glass-container' : ''}`}>
               <CategoryList 
               categories={categories} 
               toggleCategoryPriority={toggleCategoryPriority}
@@ -148,6 +148,7 @@ function App() {
                             Edit Category Title
                           </Form.Label>
                           <Form.Control
+                            size="lg"
                             type="text"
                             value={editedTitle}
                             onChange={(e) => setEditedTitle(e.target.value)}

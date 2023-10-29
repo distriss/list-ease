@@ -11,7 +11,9 @@ export default function CategoryList({
 
     return (
       sortedCategories.map((category) => (
-        <ListGroup.Item key={category.id} action href={`#link${category.id}`}
+        <ListGroup.Item 
+          key={category.id} 
+          action href={`#link${category.id}`}
         >
           <CategoryItem
             key={category.id}
