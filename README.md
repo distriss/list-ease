@@ -2,7 +2,7 @@
 
 List-Ease is a to-do app with categories that allows you to organize and manage your tasks efficiently.
 
-**Link to project:** [List-Ease App](http:/) 
+**Link to project:** [List-Ease App](https://listeaser.netlify.app/) 
 
 ![ListEase Gif](http:/)
 
