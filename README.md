@@ -4,7 +4,7 @@ List-Ease is a to-do app with categories that allows you to organize and manage 
 
 **Link to project:** [List-Ease App](https://listeaser.netlify.app/) 
 
-![ListEase Gif](http:/)
+![ListEase Gif](https://trissmarsh-dev.netlify.app/images/listease-sm.gif)
 
 ## How It's Made:
 
